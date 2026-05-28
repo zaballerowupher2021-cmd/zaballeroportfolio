@@ -1,352 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jaspher Zaballero — UI/UX Designer & Frontend Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-/* ─── VARIABLES ─────────────────────────── */
-:root {
-  --bg-deep:      #050b18;
-  --bg-mid:       #080f20;
-  --bg-card:      rgba(10,18,40,0.7);
-  --cyan:         #00d4ff;
-  --teal:         #00bfa6;
-  --electric:     #1a6bff;
-  --white:        #f0f4ff;
-  --gray-100:     #c8d4f0;
-  --gray-200:     #8899bb;
-  --gray-300:     #4a5a7a;
-  --border:       rgba(0,212,255,0.12);
-  --border-soft:  rgba(255,255,255,0.06);
-  --glow-cyan:    0 0 40px rgba(0,212,255,0.2);
-  --radius-sm:    10px;
-  --radius-md:    16px;
-  --radius-lg:    24px;
-  --font-display: 'Syne', sans-serif;
-  --font-body:    'DM Sans', sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
-}
-[data-theme="light"] {
-  --bg-deep:     #f0f8ff;
-  --bg-mid:      #e2f0fb;
-  --bg-card:     rgba(240,248,255,0.75);
-  --white:       #0a1a2f;
-  --gray-100:    #1a3050;
-  --gray-200:    #3a5a7a;
-  --gray-300:    #6a8aaa;
-  --border:      rgba(0,191,166,0.2);
-  --border-soft: rgba(0,0,0,0.06);
-  --glow-cyan:   0 0 40px rgba(0,191,166,0.15);
-}
+  <title>Jaspher Zaballero — UI/UX Designer & Frontend Developer</title>
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg-deep);color:var(--white);font-family:var(--font-body);font-weight:400;line-height:1.7;overflow-x:hidden;cursor:none;transition:background .4s,color .4s}
-[data-theme="light"] body{cursor:auto}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-button{cursor:none}
-[data-theme="light"] button{cursor:pointer}
-::selection{background:rgba(0,212,255,0.25);color:var(--white)}
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-/* ─── LOADER ─────────────────────────────── */
-#loader{position:fixed;inset:0;z-index:9999;background:var(--bg-deep);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .6s,visibility .6s}
-#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.loader-ring{width:56px;height:56px;border:3px solid var(--border);border-top-color:var(--cyan);border-radius:50%;animation:spin .9s linear infinite}
-.loader-name{font-family:var(--font-display);font-size:13px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ─── CURSOR ──────────────────────────────── */
-#cursor-dot,#cursor-ring{position:fixed;border-radius:50%;pointer-events:none;z-index:9999;transition:opacity .3s}
-#cursor-dot{width:6px;height:6px;background:var(--cyan);transform:translate(-50%,-50%);box-shadow:0 0 10px var(--cyan),0 0 20px var(--cyan)}
-#cursor-ring{width:36px;height:36px;border:1.5px solid rgba(0,212,255,0.5);transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,background .25s}
-#cursor-ring.hovering{width:56px;height:56px;border-color:var(--cyan);background:rgba(0,212,255,0.08)}
-@media(hover:none){#cursor-dot,#cursor-ring{display:none}body,button{cursor:auto!important}}
-
-/* ─── BACKGROUND LAYERS ───────────────────── */
-/* Grid stays */
-.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px}
-
-/* Noise */
-.noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
-
-/* Floating orbs — now wander freely across full viewport */
-.orb-container{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0.15}
-.orb-1{width:520px;height:520px;background:radial-gradient(circle,#1a6bff 0%,transparent 70%);animation:wander1 28s ease-in-out infinite}
-.orb-2{width:440px;height:440px;background:radial-gradient(circle,#00d4ff 0%,transparent 70%);animation:wander2 22s ease-in-out infinite;opacity:.18}
-.orb-3{width:360px;height:360px;background:radial-gradient(circle,#00bfa6 0%,transparent 70%);animation:wander3 34s ease-in-out infinite;opacity:.12}
-.orb-4{width:280px;height:280px;background:radial-gradient(circle,#7c3aed 0%,transparent 70%);animation:wander4 26s ease-in-out infinite;opacity:.10}
-.orb-5{width:200px;height:200px;background:radial-gradient(circle,#00d4ff 0%,transparent 70%);animation:wander5 18s ease-in-out infinite;opacity:.14}
-
-@keyframes wander1{0%{top:-10%;left:-10%}25%{top:20%;left:60%}50%{top:70%;left:30%}75%{top:40%;left:80%}100%{top:-10%;left:-10%}}
-@keyframes wander2{0%{top:60%;left:70%}25%{top:10%;left:40%}50%{top:30%;left:10%}75%{top:80%;left:50%}100%{top:60%;left:70%}}
-@keyframes wander3{0%{top:80%;left:20%}25%{top:50%;left:70%}50%{top:10%;left:50%}75%{top:60%;left:5%}100%{top:80%;left:20%}}
-@keyframes wander4{0%{top:30%;left:50%}25%{top:70%;left:20%}50%{top:20%;left:80%}75%{top:50%;left:40%}100%{top:30%;left:50%}}
-@keyframes wander5{0%{top:10%;left:80%}25%{top:50%;left:30%}50%{top:80%;left:60%}75%{top:20%;left:10%}100%{top:10%;left:80%}}
-
-/* Particle canvas */
-#particle-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4}
-
-/* ─── NAV ─────────────────────────────────── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,box-shadow .4s}
-nav.scrolled{background:rgba(5,11,24,0.82);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,212,255,0.1),0 8px 32px rgba(0,0,0,0.4)}
-[data-theme="light"] nav.scrolled{background:rgba(240,248,255,0.85)}
-.nav-logo{font-family:var(--font-display);font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;background:linear-gradient(135deg,var(--cyan),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.nav-links{display:flex;gap:36px;list-style:none}
-.nav-links a{font-size:.88rem;font-weight:500;color:var(--gray-100);letter-spacing:.03em;position:relative;padding-bottom:3px;transition:color .25s}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:linear-gradient(90deg,var(--cyan),var(--teal));transition:width .3s ease}
-.nav-links a:hover{color:var(--cyan)}
-.nav-links a:hover::after{width:100%}
-.nav-right{display:flex;align-items:center;gap:12px}
-.nav-cta{padding:9px 22px;background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(0,191,166,0.15));border:1px solid rgba(0,212,255,0.3);border-radius:50px;font-size:.88rem;font-weight:500;color:var(--cyan);transition:all .3s}
-.nav-cta:hover{background:linear-gradient(135deg,rgba(0,212,255,0.25),rgba(0,191,166,0.25));box-shadow:0 0 20px rgba(0,212,255,0.2)}
-.theme-btn{width:38px;height:38px;border-radius:50%;background:rgba(0,212,255,0.08);border:1px solid var(--border);color:var(--white);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:none;transition:background .3s,transform .2s}
-[data-theme="light"] .theme-btn{cursor:pointer}
-.theme-btn:hover{background:rgba(0,212,255,0.18);transform:rotate(20deg)}
-.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px}
-.nav-hamburger span{display:block;width:24px;height:2px;background:var(--cyan);border-radius:2px;transition:transform .3s,opacity .3s}
-
-/* ─── MOBILE MENU ─────────────────────────── */
-.mobile-menu{display:none;position:fixed;inset:0;background:rgba(5,11,24,0.97);backdrop-filter:blur(20px);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:32px}
-[data-theme="light"] .mobile-menu{background:rgba(240,248,255,0.97)}
-.mobile-menu.open{display:flex}
-.mobile-menu a{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--white);letter-spacing:-0.03em;transition:color .2s}
-.mobile-menu a:hover{color:var(--cyan)}
-.mobile-close{position:absolute;top:24px;right:24px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--border-soft);border-radius:50%;color:var(--white);font-size:1.2rem;cursor:pointer}
-
-/* ─── SECTION BASE ─────────────────────────── */
-section{position:relative;z-index:2;padding:120px 5%}
-.section-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.78rem;font-weight:500;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
-.section-tag::before{content:'';width:24px;height:1px;background:var(--cyan);display:block}
-.section-title{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:16px}
-.gradient-text{background:linear-gradient(135deg,var(--cyan) 0%,var(--teal) 60%,var(--electric) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-
-/* ─── ANIMATIONS ───────────────────────────── */
-.fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
-.fade-up-delay-1{transition-delay:.1s}
-.fade-up-delay-2{transition-delay:.2s}
-.fade-up-delay-3{transition-delay:.3s}
-.fade-up-delay-4{transition-delay:.4s}
-@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeSlideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-/* ─── BUTTONS ──────────────────────────────── */
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-family:var(--font-body);font-size:.92rem;font-weight:500;border-radius:50px;border:none;transition:all .3s ease;position:relative;overflow:hidden}
-.btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.08);opacity:0;transition:opacity .3s}
-.btn:hover::after{opacity:1}
-.btn-primary{background:linear-gradient(135deg,var(--electric),var(--cyan));color:var(--bg-deep);font-weight:600;box-shadow:0 4px 24px rgba(0,212,255,0.3),0 0 0 1px rgba(0,212,255,0.2)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,212,255,0.45),0 0 0 1px rgba(0,212,255,0.3)}
-.btn-outline{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}
-.btn-outline:hover{border-color:rgba(0,212,255,0.4);color:var(--cyan);transform:translateY(-2px)}
-
-/* ─── HERO ─────────────────────────────────── */
-#hero{min-height:100vh;display:flex;align-items:center;padding-top:100px;overflow:hidden}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;max-width:1400px;margin:0 auto}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:50px;font-family:var(--font-mono);font-size:.78rem;color:var(--cyan);letter-spacing:.1em;margin-bottom:24px;animation:fadeSlideDown .8s ease both}
-.eyebrow-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse-dot 2s ease-in-out infinite}
-@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,0.6)}50%{box-shadow:0 0 0 5px rgba(0,212,255,0)}}
-.hero-name{font-family:var(--font-display);font-size:clamp(2.8rem,6vw,5rem);font-weight:800;line-height:1.0;letter-spacing:-0.04em;margin-bottom:10px;animation:fadeSlideUp .9s ease .1s both}
-.hero-title{font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:600;color:var(--gray-100);margin-bottom:24px;animation:fadeSlideUp .9s ease .2s both;letter-spacing:-0.01em}
-.hero-title span{background:linear-gradient(90deg,var(--cyan),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-desc{font-size:1rem;color:var(--gray-200);max-width:480px;margin-bottom:32px;line-height:1.8;animation:fadeSlideUp .9s ease .3s both}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;animation:fadeSlideUp .9s ease .4s both}
-.hero-badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px;animation:fadeSlideUp .9s ease .5s both}
-.hero-badge{display:flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--border-soft);border-radius:50px;font-size:.78rem;color:var(--gray-200)}
-
-/* ─── HERO RIGHT / PORTRAIT ────────────────── */
-.hero-right{position:relative;display:flex;align-items:center;justify-content:center;animation:fadeSlideUp 1s ease .3s both}
-.hero-portrait-bg{position:relative;width:400px;height:480px}
-.portrait-blob{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,0.12) 0%,rgba(0,191,166,0.18) 50%,rgba(26,107,255,0.12) 100%);border-radius:40% 60% 55% 45%/50% 45% 55% 50%;animation:blob-morph 12s ease-in-out infinite alternate;border:1px solid rgba(0,212,255,0.15);backdrop-filter:blur(2px)}
-@keyframes blob-morph{0%{border-radius:40% 60% 55% 45%/50% 45% 55% 50%}33%{border-radius:55% 45% 40% 60%/45% 55% 50% 50%}66%{border-radius:45% 55% 60% 40%/55% 45% 45% 55%}100%{border-radius:60% 40% 50% 50%/40% 60% 55% 45%}}
-.portrait-illustration{position:absolute;inset:20px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:30% 50% 45% 35%/40% 35% 45% 40%;animation:blob-morph 12s ease-in-out 2s infinite alternate}
-.portrait-initials{font-family:var(--font-display);font-size:6rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;user-select:none}
-.portrait-chips{position:absolute;inset:0;pointer-events:none}
-.pchip{position:absolute;padding:8px 14px;background:rgba(8,15,32,0.8);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:.75rem;font-weight:500;color:var(--gray-100);backdrop-filter:blur(12px);display:flex;align-items:center;gap:6px;animation:chip-float 4s ease-in-out infinite alternate;white-space:nowrap}
-[data-theme="light"] .pchip{background:rgba(240,248,255,0.9)}
-.pchip-1{top:5%;left:-30px;animation-delay:0s;box-shadow:0 4px 20px rgba(0,212,255,0.1)}
-.pchip-2{top:30%;right:-40px;animation-delay:-1.5s;box-shadow:0 4px 20px rgba(0,191,166,0.1)}
-.pchip-3{bottom:20%;left:-20px;animation-delay:-3s;box-shadow:0 4px 20px rgba(26,107,255,0.1)}
-.pchip-4{bottom:5%;right:-30px;animation-delay:-1s;box-shadow:0 4px 20px rgba(0,212,255,0.1)}
-@keyframes chip-float{0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
-.chip-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.chip-cyan{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
-.chip-teal{background:var(--teal);box-shadow:0 0 8px var(--teal)}
-.chip-blue{background:var(--electric);box-shadow:0 0 8px var(--electric)}
-.chip-green{background:#00d68f;box-shadow:0 0 8px #00d68f}
-
-/* ─── ABOUT — new layout: photo left, text right ── */
-#about{background:transparent}
-.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:70px;align-items:center;max-width:1200px;margin:0 auto}
-
-/* Left: profile placeholder */
-.about-photo-wrap{display:flex;flex-direction:column;align-items:center;gap:0;position:relative}
-.about-photo-ring{width:280px;height:280px;border-radius:50%;background:linear-gradient(135deg,rgba(0,212,255,0.12),rgba(0,191,166,0.14));border:2px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;animation:ring-pulse 4s ease-in-out infinite}
-@keyframes ring-pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,0.15)}50%{box-shadow:0 0 0 20px rgba(0,212,255,0)}}
-.about-photo-ring::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px dashed rgba(0,212,255,0.2);animation:spin-slow 20s linear infinite}
-@keyframes spin-slow{to{transform:rotate(360deg)}}
-.about-initials-big{font-family:var(--font-display);font-size:5rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;user-select:none}
-.about-photo-tag{margin-top:20px;padding:8px 20px;border-radius:50px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);font-family:var(--font-mono);font-size:.72rem;color:var(--cyan);letter-spacing:.1em;text-align:center}
-
-/* Right: text only */
-.about-text p{color:var(--gray-200);font-size:1rem;line-height:1.85;margin-bottom:16px}
-.about-text p strong{color:var(--white);font-weight:500}
-.about-highlight{color:var(--cyan);font-style:italic}
-
-/* ─── SKILLS — two separate groups ─────────── */
-#skills{background:transparent}
-.skills-header{max-width:600px;margin-bottom:60px}
-.skills-header p{color:var(--gray-200);font-size:1rem;margin-top:12px}
-
-.skills-group-label{font-family:var(--font-mono);font-size:.72rem;font-weight:500;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.skills-group-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
-.skills-group{margin-bottom:48px}
-
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;max-width:1200px;margin:0 auto}
-.skill-card{padding:20px 18px;background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-md);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:flex-start;gap:10px;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s;cursor:default}
-.skill-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,0.05) 0%,transparent 60%);opacity:0;transition:opacity .3s}
-.skill-card:hover{transform:translateY(-5px) scale(1.02);border-color:rgba(0,212,255,0.3);box-shadow:var(--glow-cyan),0 20px 40px rgba(0,0,0,0.4)}
-.skill-card:hover::after{opacity:1}
-.skill-icon-wrap{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
-.skill-icon-cyan{background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.2)}
-.skill-icon-blue{background:rgba(26,107,255,0.12);border:1px solid rgba(26,107,255,0.2)}
-.skill-icon-teal{background:rgba(0,191,166,0.12);border:1px solid rgba(0,191,166,0.2)}
-.skill-icon-green{background:rgba(0,214,143,0.12);border:1px solid rgba(0,214,143,0.2)}
-.skill-name{font-family:var(--font-display);font-size:.9rem;font-weight:700;color:var(--white);letter-spacing:-0.01em}
-.skill-type{font-size:.68rem;color:var(--gray-300);letter-spacing:.08em;text-transform:uppercase}
-
-/* ─── EDUCATION — empty, keep section shell ─ */
-#education{background:transparent}
-.edu-inner{max-width:800px;margin:0 auto}
-.edu-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:80px 40px;background:var(--bg-card);border:1px dashed var(--border);border-radius:var(--radius-lg);backdrop-filter:blur(20px);text-align:center;color:var(--gray-300)}
-.edu-empty-icon{font-size:2.5rem;opacity:.4}
-.edu-empty-text{font-size:.9rem;font-family:var(--font-mono);letter-spacing:.06em}
-
-/* ─── PROJECTS ─────────────────────────────── */
-#projects{background:transparent}
-.projects-header{max-width:600px;margin-bottom:60px}
-.projects-header p{color:var(--gray-200);font-size:1rem;margin-top:12px}
-.projects-bento{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;max-width:1200px;margin:0 auto}
-.pc-1{grid-column:span 7;grid-row:span 2;min-height:380px}
-.pc-2{grid-column:span 5;min-height:180px}
-.pc-3{grid-column:span 5;min-height:180px}
-.pc-4{grid-column:span 6;min-height:220px}
-.pc-5{grid-column:span 6;min-height:220px}
-.project-card{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-lg);overflow:hidden;backdrop-filter:blur(20px);position:relative;transition:transform .4s ease,box-shadow .4s ease,border-color .4s;cursor:pointer;display:flex;flex-direction:column}
-.project-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.25);box-shadow:0 24px 48px rgba(0,0,0,0.5),var(--glow-cyan)}
-.project-card:hover .project-overlay{opacity:1}
-.project-card:hover .project-arrow{transform:translate(3px,-3px)}
-.project-mockup{flex:1;min-height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.project-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,0.06) 0%,rgba(0,191,166,0.08) 100%);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center}
-.overlay-btn{padding:10px 22px;background:rgba(8,15,32,0.85);border:1px solid rgba(0,212,255,0.4);border-radius:50px;font-size:.82rem;color:var(--cyan);backdrop-filter:blur(10px);font-family:var(--font-body);font-weight:500}
-.project-info{padding:20px 24px 24px}
-.project-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.project-tag{padding:3px 10px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.15);border-radius:50px;font-size:.7rem;color:var(--cyan);letter-spacing:.05em;font-family:var(--font-mono)}
-.project-title-row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.project-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--white);letter-spacing:-0.02em;margin-bottom:6px}
-.project-arrow{font-size:1rem;color:var(--gray-300);transition:transform .3s,color .3s;flex-shrink:0;margin-top:3px}
-.project-card:hover .project-arrow{color:var(--cyan)}
-.project-desc{font-size:.85rem;color:var(--gray-200);line-height:1.7}
-.project-desc li{list-style:none;padding:2px 0}
-.project-desc li::before{content:'↗ ';color:var(--cyan)}
-.mock-bar{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--cyan),var(--teal));opacity:0.7}
-
-/* ─── EXPERIENCE / GOALS ─────────────────── */
-#experience{background:transparent}
-.exp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;max-width:1200px;margin:40px auto 0}
-.exp-card{padding:28px;background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-md);backdrop-filter:blur(20px);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s,border-color .3s}
-.exp-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--cyan),var(--teal));transform:scaleY(0);transform-origin:top;transition:transform .4s ease}
-.exp-card:hover{transform:translateY(-4px);box-shadow:var(--glow-cyan),0 20px 40px rgba(0,0,0,0.4);border-color:rgba(0,212,255,0.2)}
-.exp-card:hover::before{transform:scaleY(1)}
-.exp-icon{width:48px;height:48px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.15)}
-.exp-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-0.02em}
-.exp-text{font-size:.87rem;color:var(--gray-200);line-height:1.75}
-
-/* ─── LANGUAGES — empty shell ─────────────── */
-#languages{background:transparent;padding-top:0}
-.lang-inner{max-width:1200px;margin:0 auto}
-.lang-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:60px 40px;background:var(--bg-card);border:1px dashed var(--border);border-radius:var(--radius-lg);backdrop-filter:blur(20px);text-align:center;color:var(--gray-300);margin-top:32px}
-.lang-empty-icon{font-size:2rem;opacity:.4}
-.lang-empty-text{font-size:.9rem;font-family:var(--font-mono);letter-spacing:.06em}
-
-/* ─── CONTACT ──────────────────────────────── */
-#contact{background:transparent;padding-bottom:160px}
-.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.contact-left p{color:var(--gray-200);font-size:1rem;margin-bottom:36px;line-height:1.8}
-.contact-links{display:flex;flex-direction:column;gap:14px}
-.contact-link-item{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-md);backdrop-filter:blur(16px);transition:transform .3s,border-color .3s,box-shadow .3s;color:var(--white)}
-.contact-link-item:hover{transform:translateX(6px);border-color:rgba(0,212,255,0.3);box-shadow:var(--glow-cyan)}
-.contact-link-icon{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.contact-link-icon.cyan{background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.2)}
-.contact-link-icon.teal{background:rgba(0,191,166,0.12);border:1px solid rgba(0,191,166,0.2)}
-.contact-link-icon.blue{background:rgba(26,107,255,0.12);border:1px solid rgba(26,107,255,0.2)}
-.contact-link-label{font-size:.78rem;color:var(--gray-300);margin-bottom:1px}
-.contact-link-value{font-size:.9rem;font-weight:500}
-.contact-link-arrow{margin-left:auto;color:var(--gray-300);font-size:.9rem;transition:color .3s}
-.contact-link-item:hover .contact-link-arrow{color:var(--cyan)}
-.contact-form{background:var(--bg-card);border:1px solid var(--border-soft);border-radius:var(--radius-lg);padding:36px;backdrop-filter:blur(20px)}
-.contact-form h3{font-family:var(--font-display);font-size:1.3rem;font-weight:700;margin-bottom:24px;letter-spacing:-0.02em}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.form-label{font-size:.78rem;color:var(--gray-200);letter-spacing:.05em}
-.form-input,.form-textarea{padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid var(--border-soft);border-radius:var(--radius-sm);color:var(--white);font-family:var(--font-body);font-size:.9rem;transition:border-color .3s,box-shadow .3s,background .3s;outline:none;resize:none}
-.form-input::placeholder,.form-textarea::placeholder{color:var(--gray-300)}
-.form-input:focus,.form-textarea:focus{border-color:rgba(0,212,255,0.4);background:rgba(0,212,255,0.04);box-shadow:0 0 0 3px rgba(0,212,255,0.08)}
-.form-textarea{min-height:120px}
-.form-submit{width:100%;padding:14px;background:linear-gradient(135deg,var(--electric),var(--cyan));border:none;border-radius:var(--radius-sm);color:var(--bg-deep);font-family:var(--font-display);font-size:.95rem;font-weight:700;letter-spacing:-0.01em;cursor:none;transition:all .3s;position:relative;overflow:hidden}
-[data-theme="light"] .form-submit{cursor:pointer}
-.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,212,255,0.4)}
-.form-success{display:none;padding:14px;background:rgba(0,191,166,0.08);border:1px solid rgba(0,191,166,0.3);border-radius:var(--radius-sm);color:var(--teal);font-size:.88rem;text-align:center;margin-top:12px}
-
-/* ─── FOOTER ────────────────────────────────── */
-footer{position:relative;z-index:2;border-top:1px solid var(--border-soft);padding:32px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-.footer-logo{font-family:var(--font-display);font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.footer-text{font-size:.82rem;color:var(--gray-300)}
-.footer-links{display:flex;gap:24px}
-.footer-links a{font-size:.82rem;color:var(--gray-300);transition:color .25s}
-.footer-links a:hover{color:var(--cyan)}
-
-/* ─── SCROLL TOP ────────────────────────────── */
-.scroll-top{position:fixed;bottom:32px;right:32px;width:44px;height:44px;background:rgba(8,15,32,0.85);border:1px solid rgba(0,212,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--cyan);backdrop-filter:blur(12px);cursor:none;opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s,box-shadow .3s;z-index:50}
-[data-theme="light"] .scroll-top{cursor:pointer;background:rgba(240,248,255,0.85)}
-.scroll-top.visible{opacity:1;transform:translateY(0)}
-.scroll-top:hover{box-shadow:var(--glow-cyan)}
-
-/* ─── RESPONSIVE ────────────────────────────── */
-@media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:50px}
-  .hero-right{display:none}
-  .about-grid{grid-template-columns:1fr}
-  .about-photo-wrap{flex-direction:row;gap:28px;align-items:center;justify-content:flex-start}
-  .contact-inner{grid-template-columns:1fr}
-  .projects-bento{grid-template-columns:1fr 1fr}
-  .pc-1{grid-column:span 2}
-  .pc-2,.pc-3,.pc-4,.pc-5{grid-column:span 1}
-}
-@media(max-width:768px){
-  section{padding:80px 5%}
-  .nav-links,.nav-cta{display:none}
-  .nav-hamburger{display:flex}
-  .projects-bento{grid-template-columns:1fr}
-  .pc-1,.pc-2,.pc-3,.pc-4,.pc-5{grid-column:span 1}
-  .form-row{grid-template-columns:1fr}
-  .hero-badges{display:none}
-  .exp-grid{grid-template-columns:1fr}
-  .about-photo-wrap{flex-direction:column}
-}
-@media(max-width:480px){
-  .hero-cta{flex-direction:column}
-  .hero-cta .btn{width:100%;justify-content:center}
-  footer{flex-direction:column;text-align:center}
-  .skills-grid{grid-template-columns:1fr 1fr}
-}
-</style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <!-- LOADER -->
@@ -361,6 +28,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border-soft);paddi
 
 <!-- BACKGROUND -->
 <canvas id="particle-canvas"></canvas>
+
 <div class="orb-container">
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
@@ -368,569 +36,117 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border-soft);paddi
   <div class="orb orb-4"></div>
   <div class="orb orb-5"></div>
 </div>
+
 <div class="grid-bg"></div>
 <div class="noise-overlay"></div>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
-  <a href="#hero"       onclick="closeMobileMenu()">Home</a>
-  <a href="#about"      onclick="closeMobileMenu()">About</a>
-  <a href="#skills"     onclick="closeMobileMenu()">Skills</a>
-  <a href="#education"  onclick="closeMobileMenu()">Education</a>
-  <a href="#projects"   onclick="closeMobileMenu()">Projects</a>
-  <a href="#experience" onclick="closeMobileMenu()">Goals</a>
-  <a href="#contact"    onclick="closeMobileMenu()">Contact</a>
-</div>
 
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-logo">JZ.</div>
+
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#education">Education</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Goals</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+
   <div class="nav-right">
-    <button class="theme-btn" id="themeToggle" title="Toggle theme">🌙</button>
-    <a href="#contact" class="nav-cta">Let's Talk →</a>
-    <button class="nav-hamburger" onclick="openMobileMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
+    <button class="theme-btn" id="themeToggle">🌙</button>
+
+    <button class="nav-hamburger" onclick="openMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
 </nav>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
+
     <div class="hero-left">
       <div class="hero-eyebrow">
         <span class="eyebrow-dot"></span>
         Available for OJT / Internship · 2026
       </div>
+
       <h1 class="hero-name">
-        Jaspher<br><span class="gradient-text">Zaballero</span>
+        Jaspher <br>
+        <span class="gradient-text">Zaballero</span>
       </h1>
+
       <div class="hero-title">
-        <span>UI/UX Designer</span> &amp; Frontend Developer
+        <span>UI/UX Designer</span> & Frontend Developer
       </div>
+
       <p class="hero-desc">
-        Computer Science student passionate about building modern digital experiences, creating functional systems, and learning innovative technologies.
+        Computer Science student passionate about building modern digital experiences.
       </p>
+
       <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">Explore <span>→</span></a>
-        <a href="#contact"  class="btn btn-outline">Contact Me <span>✉</span></a>
-      </div>
-      <div class="hero-badges">
-        <div class="hero-badge"><span>🎯</span> Intern Applicant</div>
-        <div class="hero-badge"><span>🎨</span> UI/UX Enthusiast</div>
-        <div class="hero-badge"><span>🚀</span> Future Software Engineer</div>
-        <div class="hero-badge"><span>🎓</span> Computer Science</div>
+        <a href="#projects" class="btn btn-primary">Explore →</a>
+        <a href="#contact" class="btn btn-outline">Contact Me ✉</a>
       </div>
     </div>
 
     <div class="hero-right">
       <div class="hero-portrait-bg">
+
         <div class="portrait-blob"></div>
+
         <div class="portrait-illustration">
-          <div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,191,166,0.1));">
-            <span class="portrait-initials">JZ</span>
-          </div>
+          <span class="portrait-initials">JZ</span>
         </div>
-        <div class="portrait-chips">
-          <div class="pchip pchip-1"><span class="chip-dot chip-cyan"></span> JavaScript</div>
-          <div class="pchip pchip-2"><span class="chip-dot chip-teal"></span> Figma</div>
-          <div class="pchip pchip-3"><span class="chip-dot chip-blue"></span> UI/UX Design</div>
-          <div class="pchip pchip-4"><span class="chip-dot chip-green"></span> Open to Work</div>
-        </div>
+
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ══════════ ABOUT ══════════ -->
+<!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
 
-    <!-- LEFT: profile photo placeholder -->
-    <div class="about-photo-wrap fade-up">
+    <div class="about-photo-wrap">
       <div class="about-photo-ring">
         <span class="about-initials-big">JZ</span>
       </div>
-      <div class="about-photo-tag">Jaspher Zaballero · BSCS</div>
+
+      <div class="about-photo-tag">
+        Jaspher Zaballero · BSCS
+      </div>
     </div>
 
-    <!-- RIGHT: text only, no stat boxes -->
-    <div class="about-text fade-up fade-up-delay-2">
+    <div class="about-text">
       <div class="section-tag">About Me</div>
-      <h2 class="section-title">Designing with purpose,<br><span class="gradient-text">building with passion</span></h2>
-      <p>I'm a <strong>Bachelor of Science in Computer Science</strong> student with a deep passion for the intersection of design and technology. I enjoy <em class="about-highlight">transforming ideas into useful digital solutions</em> while continuously improving my technical and creative skills.</p>
-      <p>I spend my time studying <strong>UI/UX design principles</strong>, building frontend projects, and creating system documentation that bridges user needs and technical implementation. I believe great software is both functional and beautiful.</p>
-      <p>I'm eager to gain <strong>real-world experience</strong>, collaborate with teams, and contribute to meaningful projects as I grow into a future software developer. I'm actively seeking an OJT/Internship where I can apply my knowledge and grow alongside talented professionals.</p>
-    </div>
-  </div>
-</section>
 
-<!-- ══════════ SKILLS ══════════ -->
-<section id="skills">
-  <div class="skills-header fade-up">
-    <div class="section-tag">What I Know</div>
-    <h2 class="section-title">Skills &amp; <span class="gradient-text">Technologies</span></h2>
-    <p>Skills built through coursework, academic projects, and self-driven learning — organized by category.</p>
-  </div>
+      <h2 class="section-title">
+        Designing with purpose,
+        <span class="gradient-text">building with passion</span>
+      </h2>
 
-  <!-- Group 1: Skills -->
-  <div class="skills-group">
-    <div class="skills-group-label fade-up">Skills</div>
-    <div class="skills-grid">
-      <div class="skill-card fade-up fade-up-delay-1">
-        <div class="skill-icon-wrap skill-icon-teal">🔮</div>
-        <div class="skill-name">UI/UX Design</div>
-        <div class="skill-type">Discipline</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-2">
-        <div class="skill-icon-wrap skill-icon-blue">📐</div>
-        <div class="skill-name">Wireframing</div>
-        <div class="skill-type">Design Process</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-3">
-        <div class="skill-icon-wrap skill-icon-cyan">🔗</div>
-        <div class="skill-name">Prototyping</div>
-        <div class="skill-type">Design Process</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-4">
-        <div class="skill-icon-wrap skill-icon-teal">📝</div>
-        <div class="skill-name">System Docs</div>
-        <div class="skill-type">Technical Writing</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-1">
-        <div class="skill-icon-wrap skill-icon-blue">🌐</div>
-        <div class="skill-name">HTML &amp; CSS</div>
-        <div class="skill-type">Frontend</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-2">
-        <div class="skill-icon-wrap skill-icon-cyan">⚡</div>
-        <div class="skill-name">JavaScript</div>
-        <div class="skill-type">Language</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-3">
-        <div class="skill-icon-wrap skill-icon-teal">🐍</div>
-        <div class="skill-name">Python</div>
-        <div class="skill-type">Language</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-4">
-        <div class="skill-icon-wrap skill-icon-green">🗣️</div>
-        <div class="skill-name">Communication</div>
-        <div class="skill-type">Soft Skill</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-1">
-        <div class="skill-icon-wrap skill-icon-blue">🔧</div>
-        <div class="skill-name">Adaptability</div>
-        <div class="skill-type">Soft Skill</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Group 2: Technologies & Tools -->
-  <div class="skills-group">
-    <div class="skills-group-label fade-up">Technologies &amp; Tools</div>
-    <div class="skills-grid">
-      <div class="skill-card fade-up fade-up-delay-1">
-        <div class="skill-icon-wrap skill-icon-teal">🎨</div>
-        <div class="skill-name">Figma</div>
-        <div class="skill-type">Design Tool</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-2">
-        <div class="skill-icon-wrap skill-icon-cyan">💻</div>
-        <div class="skill-name">VS Code</div>
-        <div class="skill-type">Dev Tool</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-3">
-        <div class="skill-icon-wrap skill-icon-blue">📊</div>
-        <div class="skill-name">MS Office</div>
-        <div class="skill-type">Productivity</div>
-      </div>
-      <div class="skill-card fade-up fade-up-delay-4">
-        <div class="skill-icon-wrap skill-icon-green">🤖</div>
-        <div class="skill-name">AI Research</div>
-        <div class="skill-type">Tool</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ EDUCATION (empty) ══════════ -->
-<section id="education">
-  <div class="edu-inner">
-    <div class="fade-up" style="max-width:600px;margin-bottom:48px;">
-      <div class="section-tag">My Journey</div>
-      <h2 class="section-title">Education &amp; <span class="gradient-text">Background</span></h2>
-    </div>
-    <div class="edu-empty fade-up">
-      <div class="edu-empty-icon">📚</div>
-      <div class="edu-empty-text">Coming soon — details will be added here.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ PROJECTS ══════════ -->
-<section id="projects">
-  <div class="projects-header fade-up">
-    <div class="section-tag">Featured Work</div>
-    <h2 class="section-title">Selected <span class="gradient-text">Projects</span></h2>
-    <p>Academic projects that demonstrate my ability to design, document, and develop digital solutions.</p>
-  </div>
-  <div class="projects-bento">
-
-    <div class="project-card pc-1 fade-up">
-      <div class="project-mockup" style="min-height:220px;">
-        <div style="background:linear-gradient(135deg,rgba(0,212,255,0.08) 0%,rgba(0,191,166,0.12) 100%);width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:30px;">
-          <div style="width:80%;"><div class="mock-bar" style="width:100%;margin-bottom:8px;"></div></div>
-          <div style="display:flex;gap:8px;align-items:center;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15);border-radius:8px;padding:12px 16px;width:85%;">
-            <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--teal));display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#050b18;font-weight:700;">01</div>
-            <div style="flex:1;"><div class="mock-bar" style="width:60%;height:6px;margin-bottom:4px;"></div><div class="mock-bar" style="width:40%;height:4px;opacity:.4;"></div></div>
-            <div style="font-size:.7rem;color:rgba(0,212,255,0.7);font-family:monospace;">In Stock</div>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px 16px;width:85%;">
-            <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:rgba(255,255,255,0.4);font-weight:700;">02</div>
-            <div style="flex:1;"><div class="mock-bar" style="width:55%;height:6px;margin-bottom:4px;opacity:.3;"></div><div class="mock-bar" style="width:35%;height:4px;opacity:.15;"></div></div>
-            <div style="font-size:.7rem;color:rgba(255,255,255,0.2);font-family:monospace;">Low Stock</div>
-          </div>
-          <div style="display:flex;gap:8px;align-items:center;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:8px;padding:12px 16px;width:85%;">
-            <div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:rgba(255,255,255,0.2);font-weight:700;">03</div>
-            <div style="flex:1;"><div class="mock-bar" style="width:70%;height:6px;margin-bottom:4px;opacity:.15;"></div><div class="mock-bar" style="width:30%;height:4px;opacity:.08;"></div></div>
-            <div style="font-size:.7rem;color:rgba(255,255,255,0.1);font-family:monospace;">Sold Out</div>
-          </div>
-        </div>
-        <div class="project-overlay"><span class="overlay-btn">View Case Study →</span></div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags"><span class="project-tag">Systems Analysis</span><span class="project-tag">Documentation</span><span class="project-tag">DFD / Flowchart</span></div>
-        <div class="project-title-row">
-          <div>
-            <div class="project-title">ShopEase: Sales &amp; Inventory System</div>
-            <ul class="project-desc">
-              <li>Designed &amp; documented a client-based inventory and sales management system</li>
-              <li>Created flowcharts, DFDs, and full system documentation</li>
-              <li>Developed stock monitoring and transaction concepts</li>
-            </ul>
-          </div>
-          <div class="project-arrow">↗</div>
-        </div>
-      </div>
+      <p>
+        I'm a Computer Science student passionate about UI/UX and frontend development.
+      </p>
     </div>
 
-    <div class="project-card pc-2 fade-up fade-up-delay-1">
-      <div class="project-mockup">
-        <div style="background:linear-gradient(135deg,rgba(0,191,166,0.08),rgba(26,107,255,0.1));width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:8px;">
-          <div style="width:70px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--cyan),var(--teal));margin-bottom:4px;"></div>
-          <div style="width:90px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);"></div>
-          <div style="width:60px;height:4px;border-radius:2px;background:rgba(255,255,255,0.08);"></div>
-          <div style="width:80px;height:22px;border-radius:11px;background:linear-gradient(135deg,var(--teal),var(--cyan));margin-top:8px;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#050b18;">Add to Cart</div>
-        </div>
-        <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags"><span class="project-tag">Frontend</span><span class="project-tag">JavaScript</span></div>
-        <div class="project-title-row">
-          <div class="project-title">Mini E-Commerce Cart System</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-desc">Shopping cart with quantity updates, total computation, and user-centered design.</div>
-      </div>
-    </div>
-
-    <div class="project-card pc-3 fade-up fade-up-delay-2">
-      <div class="project-mockup">
-        <div style="background:linear-gradient(135deg,rgba(26,107,255,0.1),rgba(0,212,255,0.06));width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:8px;">
-          <div style="display:flex;gap:8px;align-items:center;width:85%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 14px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 6px var(--teal);flex-shrink:0;"></span><div style="flex:1;display:flex;flex-direction:column;gap:4px;"><div style="height:4px;border-radius:2px;background:rgba(255,255,255,0.12);width:70%;"></div></div><span style="font-size:.65rem;color:rgba(0,191,166,0.7);font-family:monospace;">Present</span></div>
-          <div style="display:flex;gap:8px;align-items:center;width:85%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 14px;"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,100,100,0.7);flex-shrink:0;"></span><div style="flex:1;display:flex;flex-direction:column;gap:4px;"><div style="height:4px;border-radius:2px;background:rgba(255,255,255,0.12);width:60%;"></div></div><span style="font-size:.65rem;color:rgba(255,100,100,0.6);font-family:monospace;">Absent</span></div>
-          <div style="display:flex;gap:8px;align-items:center;width:85%;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:10px 14px;"><span style="width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);flex-shrink:0;"></span><div style="flex:1;display:flex;flex-direction:column;gap:4px;"><div style="height:4px;border-radius:2px;background:rgba(255,255,255,0.12);width:80%;"></div></div><span style="font-size:.65rem;color:rgba(0,212,255,0.7);font-family:monospace;">Present</span></div>
-        </div>
-        <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags"><span class="project-tag">App Design</span><span class="project-tag">Records</span></div>
-        <div class="project-title-row">
-          <div class="project-title">Attendance Monitoring System</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-desc">Simple attendance recording app with record management and reporting functions.</div>
-      </div>
-    </div>
-
-    <div class="project-card pc-4 fade-up fade-up-delay-1">
-      <div class="project-mockup">
-        <div style="background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,191,166,0.1));width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:16px;flex-wrap:wrap;">
-          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:6px 10px;font-size:.65rem;color:var(--gray-200);white-space:nowrap;">📐 Wireframes</div>
-          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:6px 10px;font-size:.65rem;color:var(--gray-200);white-space:nowrap;">🎨 UI Mockups</div>
-          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:6px 10px;font-size:.65rem;color:var(--gray-200);white-space:nowrap;">📊 Data Flow</div>
-          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(0,212,255,0.12);border-radius:6px;padding:6px 10px;font-size:.65rem;color:var(--cyan);white-space:nowrap;">✅ Documentation</div>
-        </div>
-        <div class="project-overlay"><span class="overlay-btn">View Work →</span></div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags"><span class="project-tag">UX Design</span><span class="project-tag">Figma</span></div>
-        <div class="project-title-row">
-          <div class="project-title">UI/UX Design Portfolio</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-desc">Collection of wireframes, mockups, and design documentation from academic coursework.</div>
-      </div>
-    </div>
-
-    <div class="project-card pc-5 fade-up fade-up-delay-2">
-      <div class="project-mockup">
-        <div style="background:linear-gradient(135deg,rgba(26,107,255,0.1),rgba(0,191,166,0.08));width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
-          <div style="display:flex;gap:16px;align-items:center;">
-            <div style="width:60px;height:90px;border:2px solid rgba(0,212,255,0.3);border-radius:10px;background:rgba(0,0,0,0.3);display:flex;flex-direction:column;gap:4px;padding:8px 6px;"><div style="height:6px;border-radius:3px;background:linear-gradient(90deg,var(--cyan),var(--teal));opacity:.8;"></div><div style="height:4px;border-radius:2px;background:rgba(255,255,255,0.1);width:80%;"></div><div style="height:4px;border-radius:2px;background:rgba(255,255,255,0.1);width:60%;"></div><div style="height:6px;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--cyan));opacity:.6;width:70%;"></div></div>
-            <div style="font-size:1.5rem;opacity:.4;color:var(--cyan);">→</div>
-            <div style="width:60px;height:90px;border:2px solid rgba(0,191,166,0.5);border-radius:10px;background:rgba(0,0,0,0.3);display:flex;flex-direction:column;gap:4px;padding:8px 6px;"><div style="height:6px;border-radius:3px;background:linear-gradient(90deg,var(--teal),var(--cyan));opacity:.9;"></div><div style="height:4px;border-radius:2px;background:rgba(0,191,166,0.3);width:80%;"></div><div style="height:4px;border-radius:2px;background:rgba(26,107,255,0.3);width:90%;"></div><div style="height:4px;border-radius:2px;background:rgba(0,212,255,0.2);width:60%;"></div></div>
-          </div>
-        </div>
-        <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
-      </div>
-      <div class="project-info">
-        <div class="project-tags"><span class="project-tag">Responsive</span><span class="project-tag">Frontend Dev</span></div>
-        <div class="project-title-row">
-          <div class="project-title">Responsive Web Concepts</div>
-          <div class="project-arrow">↗</div>
-        </div>
-        <div class="project-desc">Frontend experiments applying responsive layout principles and modern CSS techniques.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ INTERNSHIP GOALS ══════════ -->
-<section id="experience">
-  <div class="fade-up" style="max-width:600px;margin-bottom:60px;">
-    <div class="section-tag">Internship Goals</div>
-    <h2 class="section-title">Ready to grow,<br><span class="gradient-text">ready to contribute</span></h2>
-    <p style="color:var(--gray-200);font-size:1rem;margin-top:12px;">I'm not just looking for experience — I'm looking for a place to do meaningful work alongside people who care about their craft.</p>
-  </div>
-  <div class="exp-grid">
-    <div class="exp-card fade-up fade-up-delay-1">
-      <div class="exp-icon">📚</div>
-      <div class="exp-title">Eager to Learn</div>
-      <div class="exp-text">I absorb feedback quickly and thrive in environments where I'm challenged. I'm comfortable saying "I don't know" and even more comfortable finding out the answer.</div>
-    </div>
-    <div class="exp-card fade-up fade-up-delay-2">
-      <div class="exp-icon">🚀</div>
-      <div class="exp-title">Real-World Impact</div>
-      <div class="exp-text">I want to work on projects that real users depend on. Classroom learning is great practice, but I'm excited to contribute to live systems with real stakes and real feedback.</div>
-    </div>
-    <div class="exp-card fade-up fade-up-delay-3">
-      <div class="exp-icon">🤝</div>
-      <div class="exp-title">Team Player</div>
-      <div class="exp-text">Great products are built by great teams. I respect processes, communicate clearly, meet deadlines, and actively look for ways to support the people around me.</div>
-    </div>
-    <div class="exp-card fade-up fade-up-delay-4">
-      <div class="exp-icon">💡</div>
-      <div class="exp-title">User-First Mindset</div>
-      <div class="exp-text">Every decision I make starts with the user. I bring empathy to design conversations, advocate for clean UX, and believe simplicity is one of the hardest things to achieve.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ LANGUAGES (empty) ══════════ -->
-<section id="languages">
-  <div class="lang-inner">
-    <div class="fade-up">
-      <div class="section-tag">Communication</div>
-      <h2 class="section-title">Languages <span class="gradient-text">Spoken</span></h2>
-    </div>
-    <div class="lang-empty fade-up fade-up-delay-1">
-      <div class="lang-empty-icon">🌐</div>
-      <div class="lang-empty-text">Coming soon — language details will be added here.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════ CONTACT ══════════ -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="contact-left fade-up">
-      <div class="section-tag">Contact</div>
-      <h2 class="section-title">Let's build<br><span class="gradient-text">something great</span></h2>
-      <p>Whether you're looking for an intern who can hit the ground running or just want to connect — I'd love to hear from you. My inbox is always open.</p>
-      <div class="contact-links">
-        <a href="mailto:zaballerowupher2021@gmail.com" class="contact-link-item">
-          <div class="contact-link-icon cyan">✉️</div>
-          <div>
-            <div class="contact-link-label">Email</div>
-            <div class="contact-link-value">zaballerowupher2021@gmail.com</div>
-          </div>
-          <div class="contact-link-arrow">→</div>
-        </a>
-        <a href="tel:09154032455" class="contact-link-item">
-          <div class="contact-link-icon teal">📞</div>
-          <div>
-            <div class="contact-link-label">Phone</div>
-            <div class="contact-link-value">09154032455</div>
-          </div>
-          <div class="contact-link-arrow">→</div>
-        </a>
-        <div class="contact-link-item">
-          <div class="contact-link-icon blue">📍</div>
-          <div>
-            <div class="contact-link-label">Location</div>
-            <div class="contact-link-value">Calbayog City, Samar, Philippines</div>
-          </div>
-          <div class="contact-link-arrow">→</div>
-        </div>
-      </div>
-    </div>
-    <div class="contact-form fade-up fade-up-delay-2">
-      <h3>Send a message</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Name</label>
-          <input type="text" class="form-input" placeholder="Your name" id="fname">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input type="email" class="form-input" placeholder="your@email.com" id="femail">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Subject</label>
-        <input type="text" class="form-input" placeholder="Internship opportunity..." id="fsubject">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Message</label>
-        <textarea class="form-textarea" placeholder="Tell me about the opportunity..." id="fmessage"></textarea>
-      </div>
-      <button class="form-submit" onclick="submitForm()">Send Message ✉</button>
-      <div class="form-success" id="formSuccess">✅ Message sent! I'll get back to you soon.</div>
-    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">JZ.</div>
-  <div class="footer-text">Designed &amp; Developed by <strong>Jaspher Zaballero</strong> · © 2025</div>
-  <div class="footer-links">
-    <a href="#hero">Home</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+
+  <div class="footer-text">
+    Designed & Developed by Jaspher Zaballero
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+<!-- JS -->
+<script src="script.js"></script>
 
-<script>
-/* ── LOADER ─────────────────── */
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),900));
-
-/* ── THEME ─────────────────── */
-const themeBtn=document.getElementById('themeToggle');
-let isDark=true;
-themeBtn.addEventListener('click',()=>{
-  isDark=!isDark;
-  document.documentElement.setAttribute('data-theme',isDark?'dark':'light');
-  themeBtn.textContent=isDark?'🌙':'☀️';
-});
-
-/* ── CURSOR ─────────────────── */
-const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
-document.querySelectorAll('a,button,.skill-card,.project-card,.exp-card,.contact-link-item').forEach(el=>{
-  el.addEventListener('mouseenter',()=>ring.classList.add('hovering'));
-  el.addEventListener('mouseleave',()=>ring.classList.remove('hovering'));
-});
-
-/* ── NAV SCROLL ─────────────── */
-const navbar=document.getElementById('navbar');
-window.addEventListener('scroll',()=>{
-  navbar.classList.toggle('scrolled',window.scrollY>40);
-  document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);
-},{passive:true});
-
-/* ── MOBILE MENU ─────────────── */
-function openMobileMenu(){document.getElementById('mobileMenu').classList.add('open')}
-function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open')}
-
-/* ── SCROLL REVEAL ───────────── */
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:.12});
-document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-
-/* ── FORM ────────────────────── */
-function submitForm(){
-  const n=document.getElementById('fname').value.trim();
-  const e=document.getElementById('femail').value.trim();
-  const m=document.getElementById('fmessage').value.trim();
-  if(!n||!e||!m){alert('Please fill in your name, email, and message.');return}
-  const btn=document.querySelector('.form-submit');
-  btn.textContent='Sending...';btn.disabled=true;
-  setTimeout(()=>{
-    btn.textContent='✓ Sent!';
-    document.getElementById('formSuccess').style.display='block';
-    ['fname','femail','fsubject','fmessage'].forEach(id=>document.getElementById(id).value='');
-    setTimeout(()=>{btn.textContent='Send Message ✉';btn.disabled=false;document.getElementById('formSuccess').style.display='none'},4000);
-  },1200);
-}
-
-/* ── SMOOTH ANCHORS ──────────── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
-  });
-});
-
-/* ── PARTICLE CANVAS ─────────── */
-(function(){
-  const canvas=document.getElementById('particle-canvas');
-  const ctx=canvas.getContext('2d');
-  let pts=[];
-
-  function resize(){
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerHeight;
-    pts=Array.from({length:70},()=>({
-      x:Math.random()*canvas.width,
-      y:Math.random()*canvas.height,
-      vx:(Math.random()-.5)*.45,
-      vy:(Math.random()-.5)*.45,
-      r:Math.random()*1.4+.4
-    }));
-  }
-  resize();
-  window.addEventListener('resize',resize);
-
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    const light=document.documentElement.getAttribute('data-theme')==='light';
-    const col=light?'0,191,166':'0,212,255';
-    pts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
-      if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(${col},0.65)`;ctx.fill();
-    });
-    for(let i=0;i<pts.length;i++){
-      for(let j=i+1;j<pts.length;j++){
-        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<130){
-          ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
-          ctx.strokeStyle=`rgba(${col},${.12*(1-d/130)})`;ctx.lineWidth=.7;ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
 </body>
 </html>

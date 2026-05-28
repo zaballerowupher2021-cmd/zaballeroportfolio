@@ -306,52 +306,45 @@
         </div>
       </article>
 
-      <!-- Project 2 -->
+      <!-- Project 2 — Botanica -->
       <article class="project-card pc-2 fade-up fade-up-delay-1">
-        <div class="project-mockup">
-          <div class="mock-cart">
-            <div class="mock-cart-inner">
-              <div class="mock-bar" style="width:70px;height:6px;border-radius:3px;margin-bottom:4px"></div>
-              <div class="mock-bar" style="width:90px;height:4px;border-radius:2px;opacity:.6;margin-bottom:4px"></div>
-              <div class="mock-bar" style="width:60px;height:4px;border-radius:2px;opacity:.3;margin-bottom:10px"></div>
-              <div class="mock-cart-btn">Add to Cart</div>
-            </div>
-          </div>
+        <div class="project-mockup sq-mockup" onclick="openLightbox2(0)" style="cursor:pointer;">
+          <img src="botanica/Screenshot (633).png" alt="Botanica Preview" class="sq-preview-img" />
+          <div class="sq-preview-count">📸 9 screenshots</div>
           <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
         </div>
         <div class="project-info">
           <div class="project-tags">
-            <span class="project-tag">Frontend</span>
+            <span class="project-tag">Frontend Dev</span>
             <span class="project-tag">JavaScript</span>
+            <span class="project-tag">UI/UX Design</span>
           </div>
           <div class="project-title-row">
-            <h3 class="project-title">Mini E-Commerce Cart System</h3>
+            <h3 class="project-title">Botanica Shop</h3>
             <span class="project-arrow" aria-hidden="true">↗</span>
           </div>
-          <p class="project-desc">Shopping cart with quantity updates, total computation, and user-centred design.</p>
+          <p class="project-desc">A plant e-commerce web app with shop browsing, user authentication, services, and contact pages — built with a nature-inspired green UI.</p>
         </div>
       </article>
 
-      <!-- Project 3 -->
+      <!-- Project 3 — SmartQueue -->
       <article class="project-card pc-3 fade-up fade-up-delay-2">
-        <div class="project-mockup">
-          <div class="mock-attend">
-            <div class="mock-attend-row"><span class="mock-dot-teal"></span><div class="mock-lines"><div class="mock-bar" style="width:70%;height:4px"></div></div><span class="mock-label mock-label-teal">Present</span></div>
-            <div class="mock-attend-row"><span class="mock-dot-red"></span><div class="mock-lines"><div class="mock-bar" style="width:60%;height:4px;opacity:.4"></div></div><span class="mock-label mock-label-red">Absent</span></div>
-            <div class="mock-attend-row"><span class="mock-dot-cyan"></span><div class="mock-lines"><div class="mock-bar" style="width:80%;height:4px"></div></div><span class="mock-label mock-label-cyan">Present</span></div>
-          </div>
+        <div class="project-mockup sq-mockup" onclick="openLightbox3(0)" style="cursor:pointer;">
+          <img src="smartqueue/Screenshot (642).png" alt="SmartQueue Preview" class="sq-preview-img" />
+          <div class="sq-preview-count">📸 8 screenshots</div>
           <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
         </div>
         <div class="project-info">
           <div class="project-tags">
-            <span class="project-tag">App Design</span>
-            <span class="project-tag">Records</span>
+            <span class="project-tag">UI/UX Design</span>
+            <span class="project-tag">Frontend Dev</span>
+            <span class="project-tag">Queue System</span>
           </div>
           <div class="project-title-row">
-            <h3 class="project-title">Attendance Monitoring System</h3>
+            <h3 class="project-title">SmartQueue: Appointment &amp; Queue System</h3>
             <span class="project-arrow" aria-hidden="true">↗</span>
           </div>
-          <p class="project-desc">Simple attendance recording app with record management and reporting functions.</p>
+          <p class="project-desc">Full-featured queue management system with real-time dashboard, appointment booking, queue display, notifications, and profile management.</p>
         </div>
       </article>
 
@@ -570,6 +563,59 @@
     </div>
   </div>
 
+  <!-- LIGHTBOX 2 — Botanica -->
+  <div id="lightbox2" class="lightbox-overlay" onclick="closeLightboxOutside2(event)" aria-modal="true" role="dialog">
+    <div class="lightbox-box">
+      <button class="lightbox-close" onclick="closeLightbox2()" aria-label="Close">✕</button>
+      <div class="lightbox-header">
+        <span class="lightbox-title">Botanica Shop — Project Screenshots</span>
+        <span class="lightbox-counter" id="lbCounter2">1 / 9</span>
+      </div>
+      <div class="lightbox-track-wrap">
+        <div class="lightbox-track" id="lightboxTrack2">
+          <div class="lightbox-slide"><img src="botanica/Screenshot (633).png" alt="Welcome" /><div class="lb-caption">Welcome Screen</div></div>
+          <div class="lightbox-slide"><img src="botanica/Screenshot (634).png" alt="Home" /><div class="lb-caption">Home Page</div></div>
+          <div class="lightbox-slide"><img src="botanica/Screenshot (635).png" alt="Shop" /><div class="lb-caption">Shop</div></div>
+          <div class="lightbox-slide"><img src="botanica/Screenshot (636).png" alt="Services" /><div class="lb-caption">Services</div></div>
+          <div class="lightbox-slide"><img src="botanica/Screenshot (637).png" alt="About" /><div class="lb-caption">About</div></div>
+          <div class="lightbox-slide"><img src="botanica/Screenshot (638).png" alt="Contact" /><div class="lb-caption">Contact</div></div>
+          <div class="lightbox-slide"><img src="botanica/Screenshot (639).png" alt="Reset Password" /><div class="lb-caption">Reset Password</div></div>
+          <div class="lightbox-slide"><img src="botanica/Screenshot (640).png" alt="Sign Up" /><div class="lb-caption">Sign Up</div></div>
+          <div class="lightbox-slide"><img src="botanica/Screenshot (641).png" alt="Sign In" /><div class="lb-caption">Sign In</div></div>
+        </div>
+      </div>
+      <button class="lightbox-nav lb-prev" onclick="lbMove2(-1)" aria-label="Previous">‹</button>
+      <button class="lightbox-nav lb-next" onclick="lbMove2(1)" aria-label="Next">›</button>
+      <div class="lightbox-dots" id="lightboxDots2"></div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX 3 — SmartQueue -->
+  <div id="lightbox3" class="lightbox-overlay" onclick="closeLightboxOutside3(event)" aria-modal="true" role="dialog">
+    <div class="lightbox-box">
+      <button class="lightbox-close" onclick="closeLightbox3()" aria-label="Close">✕</button>
+      <div class="lightbox-header">
+        <span class="lightbox-title">SmartQueue — Project Screenshots</span>
+        <span class="lightbox-counter" id="lbCounter3">1 / 8</span>
+      </div>
+      <div class="lightbox-track-wrap">
+        <div class="lightbox-track" id="lightboxTrack3">
+          <div class="lightbox-slide"><img src="smartqueue/Screenshot (642).png" alt="Sign In" /><div class="lb-caption">Sign In</div></div>
+          <div class="lightbox-slide"><img src="smartqueue/Screenshot (643).png" alt="Dashboard" /><div class="lb-caption">Dashboard</div></div>
+          <div class="lightbox-slide"><img src="smartqueue/Screenshot (644).png" alt="Create Account" /><div class="lb-caption">Create Account</div></div>
+          <div class="lightbox-slide"><img src="smartqueue/Screenshot (645).png" alt="Book Appointment" /><div class="lb-caption">Book an Appointment</div></div>
+          <div class="lightbox-slide"><img src="smartqueue/Screenshot (646).png" alt="Appointments" /><div class="lb-caption">Appointment Records</div></div>
+          <div class="lightbox-slide"><img src="smartqueue/Screenshot (647).png" alt="Queue Display" /><div class="lb-caption">Queue Display</div></div>
+          <div class="lightbox-slide"><img src="smartqueue/Screenshot (648).png" alt="Notifications" /><div class="lb-caption">Notifications</div></div>
+          <div class="lightbox-slide"><img src="smartqueue/Screenshot (649).png" alt="Profile" /><div class="lb-caption">Profile</div></div>
+        </div>
+      </div>
+      <button class="lightbox-nav lb-prev" onclick="lbMove3(-1)" aria-label="Previous">‹</button>
+      <button class="lightbox-nav lb-next" onclick="lbMove3(1)" aria-label="Next">›</button>
+      <div class="lightbox-dots" id="lightboxDots3"></div>
+    </div>
+  </div>
+
   <!-- ═══════════════════════════════════════
        FOOTER
   ════════════════════════════════════════ -->
@@ -654,6 +700,61 @@
         if (Math.abs(diff) > 40) lbMove(diff > 0 ? 1 : -1);
       });
       buildDots();
+    });
+    // ── Lightbox 2 (Botanica) ──
+    var lb2Index = 0, lb2Total = 9, lb2StartX = 0;
+    function buildDots2() {
+      var d = document.getElementById('lightboxDots2'); d.innerHTML = '';
+      for (var i = 0; i < lb2Total; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'lb-dot' + (i === lb2Index ? ' lb-dot-active' : '');
+        (function(idx){ dot.onclick = function(){ goToSlide2(idx); }; })(i);
+        d.appendChild(dot);
+      }
+    }
+    function goToSlide2(n) {
+      lb2Index = n;
+      document.getElementById('lightboxTrack2').style.transform = 'translateX(-' + (lb2Index * 100) + '%)';
+      document.getElementById('lbCounter2').textContent = (lb2Index + 1) + ' / ' + lb2Total;
+      buildDots2();
+    }
+    function lbMove2(dir) { lb2Index = (lb2Index + dir + lb2Total) % lb2Total; goToSlide2(lb2Index); }
+    function openLightbox2(idx) { lb2Index = idx || 0; document.getElementById('lightbox2').classList.add('lb-open'); document.body.style.overflow = 'hidden'; goToSlide2(lb2Index); }
+    function closeLightbox2() { document.getElementById('lightbox2').classList.remove('lb-open'); document.body.style.overflow = ''; }
+    function closeLightboxOutside2(e) { if (e.target === document.getElementById('lightbox2')) closeLightbox2(); }
+
+    // ── Lightbox 3 (SmartQueue) ──
+    var lb3Index = 0, lb3Total = 8, lb3StartX = 0;
+    function buildDots3() {
+      var d = document.getElementById('lightboxDots3'); d.innerHTML = '';
+      for (var i = 0; i < lb3Total; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'lb-dot' + (i === lb3Index ? ' lb-dot-active' : '');
+        (function(idx){ dot.onclick = function(){ goToSlide3(idx); }; })(i);
+        d.appendChild(dot);
+      }
+    }
+    function goToSlide3(n) {
+      lb3Index = n;
+      document.getElementById('lightboxTrack3').style.transform = 'translateX(-' + (lb3Index * 100) + '%)';
+      document.getElementById('lbCounter3').textContent = (lb3Index + 1) + ' / ' + lb3Total;
+      buildDots3();
+    }
+    function lbMove3(dir) { lb3Index = (lb3Index + dir + lb3Total) % lb3Total; goToSlide3(lb3Index); }
+    function openLightbox3(idx) { lb3Index = idx || 0; document.getElementById('lightbox3').classList.add('lb-open'); document.body.style.overflow = 'hidden'; goToSlide3(lb3Index); }
+    function closeLightbox3() { document.getElementById('lightbox3').classList.remove('lb-open'); document.body.style.overflow = ''; }
+    function closeLightboxOutside3(e) { if (e.target === document.getElementById('lightbox3')) closeLightbox3(); }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      buildDots2(); buildDots3();
+      // Swipe for lightbox 2
+      var t2 = document.getElementById('lightboxTrack2');
+      t2.addEventListener('touchstart', function(e){ lb2StartX = e.touches[0].clientX; }, {passive:true});
+      t2.addEventListener('touchend', function(e){ var d = lb2StartX - e.changedTouches[0].clientX; if (Math.abs(d) > 40) lbMove2(d > 0 ? 1 : -1); });
+      // Swipe for lightbox 3
+      var t3 = document.getElementById('lightboxTrack3');
+      t3.addEventListener('touchstart', function(e){ lb3StartX = e.touches[0].clientX; }, {passive:true});
+      t3.addEventListener('touchend', function(e){ var d = lb3StartX - e.changedTouches[0].clientX; if (Math.abs(d) > 40) lbMove3(d > 0 ? 1 : -1); });
     });
   </script>
 </body>

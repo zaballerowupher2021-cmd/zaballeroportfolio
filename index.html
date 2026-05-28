@@ -279,42 +279,26 @@
 
     <div class="projects-bento">
 
-      <!-- Project 1 — Large -->
-      <article class="project-card pc-1 fade-up">
-        <div class="project-mockup">
-          <div class="mock-shopease">
-            <div class="mock-header-bar"><div class="mock-bar" style="width:100%"></div></div>
-            <div class="mock-row-item mock-active">
-              <div class="mock-badge mock-badge-cyan">01</div>
-              <div class="mock-lines"><div class="mock-bar" style="width:60%;height:6px"></div><div class="mock-bar" style="width:40%;height:4px;opacity:.4"></div></div>
-              <span class="mock-status mock-status-cyan">In Stock</span>
-            </div>
-            <div class="mock-row-item">
-              <div class="mock-badge mock-badge-dim">02</div>
-              <div class="mock-lines"><div class="mock-bar" style="width:55%;height:6px;opacity:.3"></div><div class="mock-bar" style="width:35%;height:4px;opacity:.15"></div></div>
-              <span class="mock-status mock-status-dim">Low Stock</span>
-            </div>
-            <div class="mock-row-item">
-              <div class="mock-badge mock-badge-faint">03</div>
-              <div class="mock-lines"><div class="mock-bar" style="width:70%;height:6px;opacity:.15"></div><div class="mock-bar" style="width:30%;height:4px;opacity:.08"></div></div>
-              <span class="mock-status mock-status-faint">Sold Out</span>
-            </div>
-          </div>
-          <div class="project-overlay"><span class="overlay-btn">View Case Study →</span></div>
+      <!-- Project 1 — Large (SmartQueue) -->
+      <article class="project-card pc-1 fade-up" id="smartqueue-card">
+        <div class="project-mockup sq-mockup" onclick="openLightbox(0)" style="cursor:pointer;">
+          <img src="Screenshot__642_.png" alt="SmartQueue Preview" class="sq-preview-img" />
+          <div class="sq-preview-count">📸 8 screenshots</div>
+          <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
         </div>
         <div class="project-info">
           <div class="project-tags">
-            <span class="project-tag">Systems Analysis</span>
-            <span class="project-tag">Documentation</span>
-            <span class="project-tag">DFD / Flowchart</span>
+            <span class="project-tag">UI/UX Design</span>
+            <span class="project-tag">Frontend Dev</span>
+            <span class="project-tag">Queue System</span>
           </div>
           <div class="project-title-row">
             <div>
-              <h3 class="project-title">ShopEase: Sales &amp; Inventory System</h3>
+              <h3 class="project-title">SmartQueue: Appointment &amp; Queue System</h3>
               <ul class="project-desc">
-                <li>Designed &amp; documented a client-based inventory and sales management system</li>
-                <li>Created flowcharts, DFDs, and full system documentation</li>
-                <li>Developed stock monitoring and transaction concepts</li>
+                <li>Full-featured queue management system with real-time dashboard</li>
+                <li>Book appointments, track queue status, and manage notifications</li>
+                <li>Dark-themed UI with profile, QR code, and role-based access</li>
               </ul>
             </div>
             <span class="project-arrow" aria-hidden="true">↗</span>
@@ -561,6 +545,34 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       LIGHTBOX MODAL (SmartQueue Screenshots)
+  ════════════════════════════════════════ -->
+  <div id="lightbox" class="lightbox-overlay" onclick="closeLightboxOutside(event)" aria-modal="true" role="dialog" aria-label="SmartQueue project screenshots">
+    <div class="lightbox-box">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+      <div class="lightbox-header">
+        <span class="lightbox-title">SmartQueue — Project Screenshots</span>
+        <span class="lightbox-counter" id="lbCounter">1 / 8</span>
+      </div>
+      <div class="lightbox-track-wrap">
+        <div class="lightbox-track" id="lightboxTrack">
+          <div class="lightbox-slide"><img src="Screenshot__642_.png" alt="Sign In" /><div class="lb-caption">Sign In Screen</div></div>
+          <div class="lightbox-slide"><img src="Screenshot__643_.png" alt="Dashboard" /><div class="lb-caption">Dashboard</div></div>
+          <div class="lightbox-slide"><img src="Screenshot__644_.png" alt="Create Account" /><div class="lb-caption">Create Account</div></div>
+          <div class="lightbox-slide"><img src="Screenshot__645_.png" alt="Book Appointment" /><div class="lb-caption">Book an Appointment</div></div>
+          <div class="lightbox-slide"><img src="Screenshot__646_.png" alt="Appointments" /><div class="lb-caption">Appointment Records</div></div>
+          <div class="lightbox-slide"><img src="Screenshot__647_.png" alt="Queue Display" /><div class="lb-caption">Queue Display</div></div>
+          <div class="lightbox-slide"><img src="Screenshot__648_.png" alt="Notifications" /><div class="lb-caption">Notifications</div></div>
+          <div class="lightbox-slide"><img src="Screenshot__649_.png" alt="Profile" /><div class="lb-caption">Profile Page</div></div>
+        </div>
+      </div>
+      <button class="lightbox-nav lb-prev" onclick="lbMove(-1)" aria-label="Previous">‹</button>
+      <button class="lightbox-nav lb-next" onclick="lbMove(1)" aria-label="Next">›</button>
+      <div class="lightbox-dots" id="lightboxDots"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
        FOOTER
   ════════════════════════════════════════ -->
   <footer>
@@ -580,5 +592,71 @@
 
   <!-- JavaScript -->
   <script src="main.js"></script>
+
+  <!-- Lightbox Script -->
+  <script>
+    var lbIndex = 0;
+    var lbTotal = 8;
+    var lbStartX = 0;
+
+    function buildDots() {
+      var d = document.getElementById('lightboxDots');
+      d.innerHTML = '';
+      for (var i = 0; i < lbTotal; i++) {
+        var dot = document.createElement('button');
+        dot.className = 'lb-dot' + (i === lbIndex ? ' lb-dot-active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i+1));
+        (function(idx){ dot.onclick = function(){ goToSlide(idx); }; })(i);
+        d.appendChild(dot);
+      }
+    }
+
+    function goToSlide(n) {
+      lbIndex = n;
+      document.getElementById('lightboxTrack').style.transform = 'translateX(-' + (lbIndex * 100) + '%)';
+      document.getElementById('lbCounter').textContent = (lbIndex + 1) + ' / ' + lbTotal;
+      buildDots();
+    }
+
+    function lbMove(dir) {
+      lbIndex = (lbIndex + dir + lbTotal) % lbTotal;
+      goToSlide(lbIndex);
+    }
+
+    function openLightbox(idx) {
+      lbIndex = idx || 0;
+      document.getElementById('lightbox').classList.add('lb-open');
+      document.body.style.overflow = 'hidden';
+      goToSlide(lbIndex);
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('lb-open');
+      document.body.style.overflow = '';
+    }
+
+    function closeLightboxOutside(e) {
+      if (e.target === document.getElementById('lightbox')) closeLightbox();
+    }
+
+    // Keyboard & swipe support
+    document.addEventListener('keydown', function(e) {
+      var lb = document.getElementById('lightbox');
+      if (!lb.classList.contains('lb-open')) return;
+      if (e.key === 'ArrowRight') lbMove(1);
+      if (e.key === 'ArrowLeft')  lbMove(-1);
+      if (e.key === 'Escape')     closeLightbox();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var track = document.getElementById('lightboxTrack');
+      track.addEventListener('touchstart', function(e){ lbStartX = e.touches[0].clientX; }, {passive:true});
+      track.addEventListener('touchend', function(e){
+        var diff = lbStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) lbMove(diff > 0 ? 1 : -1);
+      });
+      buildDots();
+    });
+  </script>
 </body>
 </html>

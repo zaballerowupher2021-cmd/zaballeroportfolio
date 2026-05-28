@@ -3,150 +3,631 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jaspher Zaballero — UI/UX Designer & Frontend Developer. Computer Science student portfolio." />
+  <title>Jaspher Zaballero — UI/UX Designer &amp; Frontend Developer</title>
 
-  <title>Jaspher Zaballero — UI/UX Designer & Frontend Developer</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-ring"></div>
-  <div class="loader-name">Jaspher Zaballero</div>
-</div>
-
-<!-- CURSOR -->
-<div id="cursor-dot"></div>
-<div id="cursor-ring"></div>
-
-<!-- BACKGROUND -->
-<canvas id="particle-canvas"></canvas>
-
-<div class="orb-container">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="orb orb-4"></div>
-  <div class="orb orb-5"></div>
-</div>
-
-<div class="grid-bg"></div>
-<div class="noise-overlay"></div>
-
-<!-- NAV -->
-<nav id="navbar">
-  <div class="nav-logo">JZ.</div>
-
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-
-  <div class="nav-right">
-    <button class="theme-btn" id="themeToggle">🌙</button>
-
-    <button class="nav-hamburger" onclick="openMobileMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+  <!-- ═══════════════════════════════════════
+       LOADER
+  ════════════════════════════════════════ -->
+  <div id="loader" role="status" aria-label="Loading">
+    <div class="loader-ring"></div>
+    <div class="loader-name">Jaspher Zaballero</div>
   </div>
-</nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-inner">
+  <!-- ═══════════════════════════════════════
+       CUSTOM CURSOR (hidden on touch devices via CSS)
+  ════════════════════════════════════════ -->
+  <div id="cursor-dot"  aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
 
-    <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-dot"></span>
-        Available for OJT / Internship · 2026
-      </div>
+  <!-- ═══════════════════════════════════════
+       BACKGROUND LAYERS
+  ════════════════════════════════════════ -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
-      <h1 class="hero-name">
-        Jaspher <br>
-        <span class="gradient-text">Zaballero</span>
-      </h1>
+  <div class="orb-container" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+  </div>
 
-      <div class="hero-title">
-        <span>UI/UX Designer</span> & Frontend Developer
-      </div>
+  <div class="grid-bg"       aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
 
-      <p class="hero-desc">
-        Computer Science student passionate about building modern digital experiences.
-      </p>
+  <!-- ═══════════════════════════════════════
+       MOBILE MENU
+  ════════════════════════════════════════ -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="#hero"       class="mobile-link">Home</a>
+    <a href="#about"      class="mobile-link">About</a>
+    <a href="#skills"     class="mobile-link">Skills</a>
+    <a href="#education"  class="mobile-link">Education</a>
+    <a href="#projects"   class="mobile-link">Projects</a>
+    <a href="#experience" class="mobile-link">Goals</a>
+    <a href="#contact"    class="mobile-link">Contact</a>
+  </div>
 
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">Explore →</a>
-        <a href="#contact" class="btn btn-outline">Contact Me ✉</a>
-      </div>
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo" aria-label="Jaspher Zaballero home">JZ.</a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Goals</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="theme-btn" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme">🌙</button>
+      <a href="#contact" class="nav-cta">Let's Talk →</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+  </nav>
 
-    <div class="hero-right">
-      <div class="hero-portrait-bg">
+  <!-- ═══════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-inner">
 
-        <div class="portrait-blob"></div>
-
-        <div class="portrait-illustration">
-          <span class="portrait-initials">JZ</span>
+      <!-- Left copy -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          Available for OJT / Internship · 2026
         </div>
 
+        <h1 class="hero-name">
+          Jaspher<br /><span class="gradient-text">Zaballero</span>
+        </h1>
+
+        <p class="hero-title">
+          <span>UI/UX Designer</span> &amp; Frontend Developer
+        </p>
+
+        <p class="hero-desc">
+          Computer Science student passionate about building modern digital
+          experiences, creating functional systems, and learning innovative
+          technologies.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">Explore <span aria-hidden="true">→</span></a>
+          <a href="#contact"  class="btn btn-outline">Contact Me <span aria-hidden="true">✉</span></a>
+        </div>
+
+        <div class="hero-badges" aria-label="Role highlights">
+          <span class="hero-badge"><span aria-hidden="true">🎯</span> Intern Applicant</span>
+          <span class="hero-badge"><span aria-hidden="true">🎨</span> UI/UX Enthusiast</span>
+          <span class="hero-badge"><span aria-hidden="true">🚀</span> Future Software Engineer</span>
+          <span class="hero-badge"><span aria-hidden="true">🎓</span> Computer Science</span>
+        </div>
+      </div>
+
+      <!-- Right portrait -->
+      <div class="hero-right" aria-hidden="true">
+        <div class="hero-portrait-bg">
+          <div class="portrait-blob"></div>
+          <div class="portrait-illustration">
+            <div class="portrait-fill">
+              <span class="portrait-initials">JZ</span>
+            </div>
+          </div>
+          <div class="portrait-chips">
+            <div class="pchip pchip-1"><span class="chip-dot chip-cyan"></span> JavaScript</div>
+            <div class="pchip pchip-2"><span class="chip-dot chip-teal"></span> Figma</div>
+            <div class="pchip pchip-3"><span class="chip-dot chip-blue"></span> UI/UX Design</div>
+            <div class="pchip pchip-4"><span class="chip-dot chip-green"></span> Open to Work</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       ABOUT
+  ════════════════════════════════════════ -->
+  <section id="about">
+    <div class="about-grid">
+
+      <!-- Left: profile avatar -->
+      <div class="about-photo-wrap fade-up">
+        <div class="about-photo-ring" aria-hidden="true">
+          <span class="about-initials-big">JZ</span>
+        </div>
+        <div class="about-photo-tag">Jaspher Zaballero · BSCS</div>
+      </div>
+
+      <!-- Right: bio text -->
+      <div class="about-text fade-up fade-up-delay-2">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">
+          Designing with purpose,<br />
+          <span class="gradient-text">building with passion</span>
+        </h2>
+        <p>
+          I'm a <strong>Bachelor of Science in Computer Science</strong> student
+          with a deep passion for the intersection of design and technology. I enjoy
+          <em class="about-highlight">transforming ideas into useful digital solutions</em>
+          while continuously improving my technical and creative skills.
+        </p>
+        <p>
+          I spend my time studying <strong>UI/UX design principles</strong>, building
+          frontend projects, and creating system documentation that bridges user needs
+          and technical implementation. I believe great software is both functional
+          and beautiful.
+        </p>
+        <p>
+          I'm eager to gain <strong>real-world experience</strong>, collaborate with
+          teams, and contribute to meaningful projects as I grow into a future
+          software developer. I'm actively seeking an OJT/Internship where I can
+          apply my knowledge and grow alongside talented professionals.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SKILLS
+  ════════════════════════════════════════ -->
+  <section id="skills">
+    <div class="skills-header fade-up">
+      <div class="section-tag">What I Know</div>
+      <h2 class="section-title">Skills &amp; <span class="gradient-text">Technologies</span></h2>
+      <p>Skills built through coursework, academic projects, and self-driven learning — organised by category.</p>
+    </div>
+
+    <!-- Group 1: Skills -->
+    <div class="skills-group">
+      <div class="skills-group-label fade-up">Skills</div>
+      <div class="skills-grid">
+        <div class="skill-card fade-up fade-up-delay-1">
+          <div class="skill-icon-wrap skill-icon-teal">🔮</div>
+          <div class="skill-name">UI/UX Design</div>
+          <div class="skill-type">Discipline</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-2">
+          <div class="skill-icon-wrap skill-icon-blue">📐</div>
+          <div class="skill-name">Wireframing</div>
+          <div class="skill-type">Design Process</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-3">
+          <div class="skill-icon-wrap skill-icon-cyan">🔗</div>
+          <div class="skill-name">Prototyping</div>
+          <div class="skill-type">Design Process</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-4">
+          <div class="skill-icon-wrap skill-icon-teal">📝</div>
+          <div class="skill-name">System Docs</div>
+          <div class="skill-type">Technical Writing</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-1">
+          <div class="skill-icon-wrap skill-icon-blue">🌐</div>
+          <div class="skill-name">HTML &amp; CSS</div>
+          <div class="skill-type">Frontend</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-2">
+          <div class="skill-icon-wrap skill-icon-cyan">⚡</div>
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-type">Language</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-3">
+          <div class="skill-icon-wrap skill-icon-teal">🐍</div>
+          <div class="skill-name">Python</div>
+          <div class="skill-type">Language</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-4">
+          <div class="skill-icon-wrap skill-icon-green">🗣️</div>
+          <div class="skill-name">Communication</div>
+          <div class="skill-type">Soft Skill</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-1">
+          <div class="skill-icon-wrap skill-icon-blue">🔧</div>
+          <div class="skill-name">Adaptability</div>
+          <div class="skill-type">Soft Skill</div>
+        </div>
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-
-    <div class="about-photo-wrap">
-      <div class="about-photo-ring">
-        <span class="about-initials-big">JZ</span>
-      </div>
-
-      <div class="about-photo-tag">
-        Jaspher Zaballero · BSCS
+    <!-- Group 2: Tools -->
+    <div class="skills-group">
+      <div class="skills-group-label fade-up">Technologies &amp; Tools</div>
+      <div class="skills-grid">
+        <div class="skill-card fade-up fade-up-delay-1">
+          <div class="skill-icon-wrap skill-icon-teal">🎨</div>
+          <div class="skill-name">Figma</div>
+          <div class="skill-type">Design Tool</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-2">
+          <div class="skill-icon-wrap skill-icon-cyan">💻</div>
+          <div class="skill-name">VS Code</div>
+          <div class="skill-type">Dev Tool</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-3">
+          <div class="skill-icon-wrap skill-icon-blue">📊</div>
+          <div class="skill-name">MS Office</div>
+          <div class="skill-type">Productivity</div>
+        </div>
+        <div class="skill-card fade-up fade-up-delay-4">
+          <div class="skill-icon-wrap skill-icon-green">🤖</div>
+          <div class="skill-name">AI Research</div>
+          <div class="skill-type">Tool</div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="about-text">
-      <div class="section-tag">About Me</div>
+  <!-- ═══════════════════════════════════════
+       EDUCATION  (placeholder)
+  ════════════════════════════════════════ -->
+  <section id="education">
+    <div class="edu-inner">
+      <div class="fade-up edu-heading">
+        <div class="section-tag">My Journey</div>
+        <h2 class="section-title">Education &amp; <span class="gradient-text">Background</span></h2>
+      </div>
+      <div class="edu-empty fade-up">
+        <div class="edu-empty-icon" aria-hidden="true">📚</div>
+        <div class="edu-empty-text">Coming soon — details will be added here.</div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ═══════════════════════════════════════
+       PROJECTS
+  ════════════════════════════════════════ -->
+  <section id="projects">
+    <div class="projects-header fade-up">
+      <div class="section-tag">Featured Work</div>
+      <h2 class="section-title">Selected <span class="gradient-text">Projects</span></h2>
+      <p>Academic projects that demonstrate my ability to design, document, and develop digital solutions.</p>
+    </div>
+
+    <div class="projects-bento">
+
+      <!-- Project 1 — Large -->
+      <article class="project-card pc-1 fade-up">
+        <div class="project-mockup">
+          <div class="mock-shopease">
+            <div class="mock-header-bar"><div class="mock-bar" style="width:100%"></div></div>
+            <div class="mock-row-item mock-active">
+              <div class="mock-badge mock-badge-cyan">01</div>
+              <div class="mock-lines"><div class="mock-bar" style="width:60%;height:6px"></div><div class="mock-bar" style="width:40%;height:4px;opacity:.4"></div></div>
+              <span class="mock-status mock-status-cyan">In Stock</span>
+            </div>
+            <div class="mock-row-item">
+              <div class="mock-badge mock-badge-dim">02</div>
+              <div class="mock-lines"><div class="mock-bar" style="width:55%;height:6px;opacity:.3"></div><div class="mock-bar" style="width:35%;height:4px;opacity:.15"></div></div>
+              <span class="mock-status mock-status-dim">Low Stock</span>
+            </div>
+            <div class="mock-row-item">
+              <div class="mock-badge mock-badge-faint">03</div>
+              <div class="mock-lines"><div class="mock-bar" style="width:70%;height:6px;opacity:.15"></div><div class="mock-bar" style="width:30%;height:4px;opacity:.08"></div></div>
+              <span class="mock-status mock-status-faint">Sold Out</span>
+            </div>
+          </div>
+          <div class="project-overlay"><span class="overlay-btn">View Case Study →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span class="project-tag">Systems Analysis</span>
+            <span class="project-tag">Documentation</span>
+            <span class="project-tag">DFD / Flowchart</span>
+          </div>
+          <div class="project-title-row">
+            <div>
+              <h3 class="project-title">ShopEase: Sales &amp; Inventory System</h3>
+              <ul class="project-desc">
+                <li>Designed &amp; documented a client-based inventory and sales management system</li>
+                <li>Created flowcharts, DFDs, and full system documentation</li>
+                <li>Developed stock monitoring and transaction concepts</li>
+              </ul>
+            </div>
+            <span class="project-arrow" aria-hidden="true">↗</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-card pc-2 fade-up fade-up-delay-1">
+        <div class="project-mockup">
+          <div class="mock-cart">
+            <div class="mock-cart-inner">
+              <div class="mock-bar" style="width:70px;height:6px;border-radius:3px;margin-bottom:4px"></div>
+              <div class="mock-bar" style="width:90px;height:4px;border-radius:2px;opacity:.6;margin-bottom:4px"></div>
+              <div class="mock-bar" style="width:60px;height:4px;border-radius:2px;opacity:.3;margin-bottom:10px"></div>
+              <div class="mock-cart-btn">Add to Cart</div>
+            </div>
+          </div>
+          <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span class="project-tag">Frontend</span>
+            <span class="project-tag">JavaScript</span>
+          </div>
+          <div class="project-title-row">
+            <h3 class="project-title">Mini E-Commerce Cart System</h3>
+            <span class="project-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="project-desc">Shopping cart with quantity updates, total computation, and user-centred design.</p>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project-card pc-3 fade-up fade-up-delay-2">
+        <div class="project-mockup">
+          <div class="mock-attend">
+            <div class="mock-attend-row"><span class="mock-dot-teal"></span><div class="mock-lines"><div class="mock-bar" style="width:70%;height:4px"></div></div><span class="mock-label mock-label-teal">Present</span></div>
+            <div class="mock-attend-row"><span class="mock-dot-red"></span><div class="mock-lines"><div class="mock-bar" style="width:60%;height:4px;opacity:.4"></div></div><span class="mock-label mock-label-red">Absent</span></div>
+            <div class="mock-attend-row"><span class="mock-dot-cyan"></span><div class="mock-lines"><div class="mock-bar" style="width:80%;height:4px"></div></div><span class="mock-label mock-label-cyan">Present</span></div>
+          </div>
+          <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span class="project-tag">App Design</span>
+            <span class="project-tag">Records</span>
+          </div>
+          <div class="project-title-row">
+            <h3 class="project-title">Attendance Monitoring System</h3>
+            <span class="project-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="project-desc">Simple attendance recording app with record management and reporting functions.</p>
+        </div>
+      </article>
+
+      <!-- Project 4 -->
+      <article class="project-card pc-4 fade-up fade-up-delay-1">
+        <div class="project-mockup">
+          <div class="mock-ux-tags">
+            <span class="mock-ux-tag">📐 Wireframes</span>
+            <span class="mock-ux-tag">🎨 UI Mockups</span>
+            <span class="mock-ux-tag">📊 Data Flow</span>
+            <span class="mock-ux-tag mock-ux-tag-cyan">✅ Documentation</span>
+          </div>
+          <div class="project-overlay"><span class="overlay-btn">View Work →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span class="project-tag">UX Design</span>
+            <span class="project-tag">Figma</span>
+          </div>
+          <div class="project-title-row">
+            <h3 class="project-title">UI/UX Design Portfolio</h3>
+            <span class="project-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="project-desc">Collection of wireframes, mockups, and design documentation from academic coursework.</p>
+        </div>
+      </article>
+
+      <!-- Project 5 -->
+      <article class="project-card pc-5 fade-up fade-up-delay-2">
+        <div class="project-mockup">
+          <div class="mock-responsive">
+            <div class="mock-phone mock-phone-left">
+              <div class="mock-bar" style="height:6px;opacity:.8"></div>
+              <div class="mock-bar" style="height:4px;width:80%;opacity:.4"></div>
+              <div class="mock-bar" style="height:4px;width:60%;opacity:.2"></div>
+              <div class="mock-bar" style="height:6px;width:70%;opacity:.6"></div>
+            </div>
+            <span class="mock-arrow-icon" aria-hidden="true">→</span>
+            <div class="mock-phone mock-phone-right">
+              <div class="mock-bar" style="height:6px;opacity:.9"></div>
+              <div class="mock-bar" style="height:4px;width:80%;opacity:.5"></div>
+              <div class="mock-bar" style="height:4px;width:90%;opacity:.4"></div>
+              <div class="mock-bar" style="height:4px;width:60%;opacity:.3"></div>
+            </div>
+          </div>
+          <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags">
+            <span class="project-tag">Responsive</span>
+            <span class="project-tag">Frontend Dev</span>
+          </div>
+          <div class="project-title-row">
+            <h3 class="project-title">Responsive Web Concepts</h3>
+            <span class="project-arrow" aria-hidden="true">↗</span>
+          </div>
+          <p class="project-desc">Frontend experiments applying responsive layout principles and modern CSS techniques.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       INTERNSHIP GOALS
+  ════════════════════════════════════════ -->
+  <section id="experience">
+    <div class="fade-up experience-header">
+      <div class="section-tag">Internship Goals</div>
       <h2 class="section-title">
-        Designing with purpose,
-        <span class="gradient-text">building with passion</span>
+        Ready to grow,<br /><span class="gradient-text">ready to contribute</span>
       </h2>
-
-      <p>
-        I'm a Computer Science student passionate about UI/UX and frontend development.
+      <p class="experience-sub">
+        I'm not just looking for experience — I'm looking for a place to do meaningful
+        work alongside people who care about their craft.
       </p>
     </div>
 
-  </div>
-</section>
+    <div class="exp-grid">
+      <div class="exp-card fade-up fade-up-delay-1">
+        <div class="exp-icon" aria-hidden="true">📚</div>
+        <h3 class="exp-title">Eager to Learn</h3>
+        <p class="exp-text">I absorb feedback quickly and thrive in environments where I'm challenged. I'm comfortable saying "I don't know" and even more comfortable finding out the answer.</p>
+      </div>
+      <div class="exp-card fade-up fade-up-delay-2">
+        <div class="exp-icon" aria-hidden="true">🚀</div>
+        <h3 class="exp-title">Real-World Impact</h3>
+        <p class="exp-text">I want to work on projects that real users depend on. Classroom learning is great practice, but I'm excited to contribute to live systems with real stakes and real feedback.</p>
+      </div>
+      <div class="exp-card fade-up fade-up-delay-3">
+        <div class="exp-icon" aria-hidden="true">🤝</div>
+        <h3 class="exp-title">Team Player</h3>
+        <p class="exp-text">Great products are built by great teams. I respect processes, communicate clearly, meet deadlines, and actively look for ways to support the people around me.</p>
+      </div>
+      <div class="exp-card fade-up fade-up-delay-4">
+        <div class="exp-icon" aria-hidden="true">💡</div>
+        <h3 class="exp-title">User-First Mindset</h3>
+        <p class="exp-text">Every decision I make starts with the user. I bring empathy to design conversations, advocate for clean UX, and believe simplicity is one of the hardest things to achieve.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">JZ.</div>
+  <!-- ═══════════════════════════════════════
+       LANGUAGES  (placeholder)
+  ════════════════════════════════════════ -->
+  <section id="languages">
+    <div class="lang-inner">
+      <div class="fade-up">
+        <div class="section-tag">Communication</div>
+        <h2 class="section-title">Languages <span class="gradient-text">Spoken</span></h2>
+      </div>
+      <div class="lang-empty fade-up fade-up-delay-1">
+        <div class="lang-empty-icon" aria-hidden="true">🌐</div>
+        <div class="lang-empty-text">Coming soon — language details will be added here.</div>
+      </div>
+    </div>
+  </section>
 
-  <div class="footer-text">
-    Designed & Developed by Jaspher Zaballero
-  </div>
-</footer>
+  <!-- ═══════════════════════════════════════
+       CONTACT
+  ════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="contact-inner">
 
-<!-- JS -->
-<script src="script.js"></script>
+      <!-- Left info -->
+      <div class="contact-left fade-up">
+        <div class="section-tag">Contact</div>
+        <h2 class="section-title">
+          Let's build<br /><span class="gradient-text">something great</span>
+        </h2>
+        <p>
+          Whether you're looking for an intern who can hit the ground running or
+          just want to connect — I'd love to hear from you. My inbox is always open.
+        </p>
 
+        <div class="contact-links">
+          <a href="mailto:zaballerowupher2021@gmail.com" class="contact-link-item">
+            <div class="contact-link-icon cyan" aria-hidden="true">✉️</div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">zaballerowupher2021@gmail.com</div>
+            </div>
+            <span class="contact-link-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a href="tel:09154032455" class="contact-link-item">
+            <div class="contact-link-icon teal" aria-hidden="true">📞</div>
+            <div>
+              <div class="contact-link-label">Phone</div>
+              <div class="contact-link-value">09154032455</div>
+            </div>
+            <span class="contact-link-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <div class="contact-link-item">
+            <div class="contact-link-icon blue" aria-hidden="true">📍</div>
+            <div>
+              <div class="contact-link-label">Location</div>
+              <div class="contact-link-value">Calbayog City, Samar, Philippines</div>
+            </div>
+            <span class="contact-link-arrow" aria-hidden="true">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right form -->
+      <div class="contact-form fade-up fade-up-delay-2">
+        <h3>Send a message</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fname">Name</label>
+            <input type="text" class="form-input" id="fname" name="name"
+                   placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="femail">Email</label>
+            <input type="email" class="form-input" id="femail" name="email"
+                   placeholder="your@email.com" autocomplete="email" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="fsubject">Subject</label>
+          <input type="text" class="form-input" id="fsubject" name="subject"
+                 placeholder="Internship opportunity..." />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="fmessage">Message</label>
+          <textarea class="form-textarea" id="fmessage" name="message"
+                    placeholder="Tell me about the opportunity..." required></textarea>
+        </div>
+
+        <button type="button" class="form-submit" id="formSubmitBtn">
+          Send Message ✉
+        </button>
+        <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+          ✅ Message sent! I'll get back to you soon.
+        </div>
+        <div class="form-error" id="formError" role="alert" aria-live="polite">
+          ⚠️ Please fill in your name, email, and message.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-logo">JZ.</div>
+    <div class="footer-text">
+      Designed &amp; Developed by <strong>Jaspher Zaballero</strong> · &copy; 2025
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#hero">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </footer>
+
+  <!-- Scroll-to-top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+  <!-- JavaScript -->
+  <script src="main.js"></script>
 </body>
 </html>

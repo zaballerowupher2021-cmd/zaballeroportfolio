@@ -1,34 +1,5 @@
-/* ============================================================
-   style.css — Jaspher Zaballero Portfolio
-   Sections:
-     1. CSS Variables & Reset
-     2. Background Layers
-     3. Loader
-     4. Custom Cursor
-     5. Navigation
-     6. Mobile Menu
-     7. Utilities (section-tag, section-title, gradient-text)
-     8. Animations & Fade-up
-     9. Buttons
-    10. Hero
-    11. About
-    12. Skills
-    13. Education
-    14. Projects  (includes project mock UIs)
-    15. Experience / Goals
-    16. Languages
-    17. Contact & Form
-    18. Footer
-    19. Scroll-to-top
-    20. Responsive
-   ============================================================ */
-
-
-/* ─────────────────────────────────────────
-   1. CSS VARIABLES & RESET
-───────────────────────────────────────── */
 :root {
-  /* Colours */
+  
   --bg-deep:       #050b18;
   --bg-mid:        #080f20;
   --bg-card:       rgba(10, 18, 40, 0.7);
@@ -44,19 +15,18 @@
   --glow-cyan:     0 0 40px rgba(0, 212, 255, 0.2);
   --glow-teal:     0 0 40px rgba(0, 191, 166, 0.2);
 
-  /* Radius */
+  
   --radius-sm:     10px;
   --radius-md:     16px;
   --radius-lg:     24px;
   --radius-xl:     32px;
 
-  /* Typography */
+  
   --font-display:  'Syne', sans-serif;
   --font-body:     'DM Sans', sans-serif;
   --font-mono:     'JetBrains Mono', monospace;
 }
 
-/* Light theme overrides */
 [data-theme="light"] {
   --bg-deep:       #f0f8ff;
   --bg-mid:        #e2f0fb;
@@ -94,7 +64,6 @@ body {
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* Restore cursor for light theme (and non-hover devices via JS) */
 [data-theme="light"] body {
   cursor: auto;
 }
@@ -122,12 +91,6 @@ button {
   color: var(--white);
 }
 
-
-/* ─────────────────────────────────────────
-   2. BACKGROUND LAYERS
-───────────────────────────────────────── */
-
-/* Dot-grid */
 .grid-bg {
   position: fixed;
   inset: 0;
@@ -139,7 +102,6 @@ button {
   background-size: 60px 60px;
 }
 
-/* Noise texture */
 .noise-overlay {
   position: fixed;
   inset: 0;
@@ -150,7 +112,6 @@ button {
   background-size: 200px 200px;
 }
 
-/* Wandering orbs */
 .orb-container {
   position: fixed;
   inset: 0;
@@ -232,7 +193,6 @@ button {
   100% { top:  10%; left:  80%; }
 }
 
-/* Particle canvas */
 #particle-canvas {
   position: fixed;
   inset: 0;
@@ -241,10 +201,6 @@ button {
   opacity: 0.4;
 }
 
-
-/* ─────────────────────────────────────────
-   3. LOADER
-───────────────────────────────────────── */
 #loader {
   position: fixed;
   inset: 0;
@@ -285,10 +241,6 @@ button {
   to { transform: rotate(360deg); }
 }
 
-
-/* ─────────────────────────────────────────
-   4. CUSTOM CURSOR
-───────────────────────────────────────── */
 #cursor-dot,
 #cursor-ring {
   position: fixed;
@@ -321,17 +273,12 @@ button {
   background: rgba(0, 212, 255, 0.08);
 }
 
-/* Hide custom cursor on touch devices */
 @media (hover: none) {
   #cursor-dot,
   #cursor-ring { display: none; }
   body, button { cursor: auto !important; }
 }
 
-
-/* ─────────────────────────────────────────
-   5. NAVIGATION
-───────────────────────────────────────── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -357,11 +304,16 @@ nav.scrolled {
   font-family: var(--font-display);
   font-size: 1.3rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
   background: linear-gradient(135deg, var(--cyan), var(--teal));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.logo-bracket {
+  font-weight: 300;
+  opacity: 0.8;
 }
 
 .nav-links {
@@ -447,10 +399,6 @@ nav.scrolled {
   transition: transform 0.3s, opacity 0.3s;
 }
 
-
-/* ─────────────────────────────────────────
-   6. MOBILE MENU
-───────────────────────────────────────── */
 .mobile-menu {
   display: none;
   position: fixed;
@@ -491,10 +439,6 @@ nav.scrolled {
   cursor: pointer;
 }
 
-
-/* ─────────────────────────────────────────
-   7. UTILITIES — SECTION TAG / TITLE / GRADIENT
-───────────────────────────────────────── */
 section {
   position: relative;
   z-index: 2;
@@ -537,10 +481,6 @@ section {
   background-clip: text;
 }
 
-
-/* ─────────────────────────────────────────
-   8. ANIMATIONS & FADE-UP
-───────────────────────────────────────── */
 .fade-up {
   opacity: 0;
   transform: translateY(30px);
@@ -567,10 +507,6 @@ section {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
-/* ─────────────────────────────────────────
-   9. BUTTONS
-───────────────────────────────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -621,10 +557,6 @@ section {
   transform: translateY(-2px);
 }
 
-
-/* ─────────────────────────────────────────
-   10. HERO
-───────────────────────────────────────── */
 #hero {
   min-height: 100vh;
   display: flex;
@@ -643,7 +575,6 @@ section {
   margin: 0 auto;
 }
 
-/* Eyebrow badge */
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -735,7 +666,6 @@ section {
   color: var(--gray-200);
 }
 
-/* Portrait area */
 .hero-right {
   position: relative;
   display: flex;
@@ -812,7 +742,6 @@ section {
   user-select: none;
 }
 
-/* Floating portrait chips */
 .portrait-chips {
   position: absolute;
   inset: 0;
@@ -859,10 +788,6 @@ section {
 .chip-blue  { background: var(--electric); box-shadow: 0 0 8px var(--electric); }
 .chip-green { background: #00d68f;         box-shadow: 0 0 8px #00d68f; }
 
-
-/* ─────────────────────────────────────────
-   11. ABOUT
-───────────────────────────────────────── */
 #about { background: transparent; }
 
 .about-grid {
@@ -874,7 +799,6 @@ section {
   margin: 0 auto;
 }
 
-/* Avatar */
 .about-photo-wrap {
   display: flex;
   flex-direction: column;
@@ -950,7 +874,6 @@ section {
   text-align: center;
 }
 
-/* Text */
 .about-text p {
   color: var(--gray-200);
   font-size: 1rem;
@@ -961,10 +884,6 @@ section {
 .about-text p strong { color: var(--white); font-weight: 500; }
 .about-highlight { color: var(--cyan); font-style: italic; }
 
-
-/* ─────────────────────────────────────────
-   12. SKILLS
-───────────────────────────────────────── */
 #skills { background: transparent; }
 
 .skills-header {
@@ -1068,10 +987,6 @@ section {
   text-transform: uppercase;
 }
 
-
-/* ─────────────────────────────────────────
-   13. EDUCATION
-───────────────────────────────────────── */
 #education { background: transparent; }
 
 .edu-inner { max-width: 800px; margin: 0 auto; }
@@ -1096,10 +1011,6 @@ section {
 .edu-empty-icon  { font-size: 2.5rem; opacity: 0.4; }
 .edu-empty-text  { font-size: 0.9rem; font-family: var(--font-mono); letter-spacing: 0.06em; }
 
-
-/* ─────────────────────────────────────────
-   14. PROJECTS
-───────────────────────────────────────── */
 #projects { background: transparent; }
 
 .projects-header { max-width: 600px; margin-bottom: 60px; }
@@ -1234,7 +1145,6 @@ section {
 
 .project-desc li::before { content: '↗ '; color: var(--cyan); }
 
-/* ── Mock UI helpers ── */
 .mock-bar {
   height: 8px;
   border-radius: 4px;
@@ -1243,7 +1153,6 @@ section {
   display: block;
 }
 
-/* ShopEase mock */
 .mock-shopease {
   background: linear-gradient(135deg,
     rgba(0, 212, 255, 0.08) 0%,
@@ -1296,7 +1205,6 @@ section {
 .mock-status-dim   { color: rgba(255, 255, 255, 0.2); }
 .mock-status-faint { color: rgba(255, 255, 255, 0.1); }
 
-/* Cart mock */
 .mock-cart {
   background: linear-gradient(135deg,
     rgba(0, 191, 166, 0.08),
@@ -1325,7 +1233,6 @@ section {
   margin-top: 10px;
 }
 
-/* Attendance mock */
 .mock-attend {
   background: linear-gradient(135deg,
     rgba(26, 107, 255, 0.1),
@@ -1360,7 +1267,6 @@ section {
 .mock-label-cyan { color: rgba(0, 212, 255, 0.7); }
 .mock-label-red  { color: rgba(255, 100, 100, 0.6); }
 
-/* UX mock */
 .mock-ux-tags {
   background: linear-gradient(135deg, rgba(0, 212, 255, 0.06), rgba(0, 191, 166, 0.1));
   width: 100%; height: 100%;
@@ -1388,7 +1294,6 @@ section {
   color: var(--cyan);
 }
 
-/* Responsive mock */
 .mock-responsive {
   background: linear-gradient(135deg, rgba(26, 107, 255, 0.1), rgba(0, 191, 166, 0.08));
   width: 100%; height: 100%;
@@ -1413,10 +1318,6 @@ section {
 
 .mock-arrow-icon { font-size: 1.5rem; opacity: 0.4; color: var(--cyan); }
 
-
-/* ─────────────────────────────────────────
-   15. EXPERIENCE / GOALS
-───────────────────────────────────────── */
 #experience { background: transparent; }
 
 .experience-header { max-width: 600px; margin-bottom: 60px; }
@@ -1485,10 +1386,6 @@ section {
   line-height: 1.75;
 }
 
-
-/* ─────────────────────────────────────────
-   16. LANGUAGES (placeholder)
-───────────────────────────────────────── */
 #languages { background: transparent; padding-top: 0; }
 
 .lang-inner { max-width: 1200px; margin: 0 auto; }
@@ -1512,10 +1409,6 @@ section {
 .lang-empty-icon { font-size: 2rem; opacity: 0.4; }
 .lang-empty-text { font-size: 0.9rem; font-family: var(--font-mono); letter-spacing: 0.06em; }
 
-
-/* ─────────────────────────────────────────
-   17. CONTACT & FORM
-───────────────────────────────────────── */
 #contact { background: transparent; padding-bottom: 160px; }
 
 .contact-inner {
@@ -1579,7 +1472,6 @@ section {
 
 .contact-link-item:hover .contact-link-arrow { color: var(--cyan); }
 
-/* Form card */
 .contact-form {
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
@@ -1680,10 +1572,6 @@ section {
   color: #ff8080;
 }
 
-
-/* ─────────────────────────────────────────
-   18. FOOTER
-───────────────────────────────────────── */
 footer {
   position: relative;
   z-index: 2;
@@ -1712,10 +1600,6 @@ footer {
 .footer-links a { font-size: 0.82rem; color: var(--gray-300); transition: color 0.25s; }
 .footer-links a:hover { color: var(--cyan); }
 
-
-/* ─────────────────────────────────────────
-   19. SCROLL-TO-TOP
-───────────────────────────────────────── */
 .scroll-top {
   position: fixed;
   bottom: 32px; right: 32px;
@@ -1742,10 +1626,6 @@ footer {
 .scroll-top.visible { opacity: 1; transform: translateY(0); }
 .scroll-top:hover   { box-shadow: var(--glow-cyan); }
 
-
-/* ─────────────────────────────────────────
-   20. RESPONSIVE
-───────────────────────────────────────── */
 @media (max-width: 1024px) {
   .hero-inner          { grid-template-columns: 1fr; gap: 50px; }
   .hero-right          { display: none; }
@@ -1777,9 +1657,7 @@ footer {
   .skills-grid         { grid-template-columns: 1fr 1fr; }
   .scroll-top          { bottom: 16px; right: 16px; }
 }
-/* ═══════════════════════════════════════
-   SMARTQUEUE PROJECT CARD PREVIEW
-════════════════════════════════════════ */
+
 .sq-mockup {
   position: relative;
   overflow: hidden;
@@ -1817,9 +1695,6 @@ footer {
   z-index: 2;
 }
 
-/* ═══════════════════════════════════════
-   LIGHTBOX MODAL
-════════════════════════════════════════ */
 .lightbox-overlay {
   display: none;
   position: fixed;

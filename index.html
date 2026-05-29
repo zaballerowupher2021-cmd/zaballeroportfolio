@@ -6,7 +6,7 @@
   <meta name="description" content="Jaspher Zaballero — UI/UX Designer & Frontend Developer. Computer Science student portfolio." />
   <title>Jaspher Zaballero — UI/UX Designer &amp; Frontend Developer</title>
 
-  <!-- Google Fonts -->
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -14,34 +14,27 @@
     rel="stylesheet"
   />
 
-  <!-- Favicon -->
+  
   <link rel="icon" type="image/png" href="favicon-logo.png" />
   <link rel="apple-touch-icon" href="favicon-logo.png" />
 
-  <!-- Stylesheet -->
+  
   <link rel="stylesheet" href="style.css" />
-  <!-- No external email library needed — Web3Forms uses plain fetch() -->
+  
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════
-       LOADER
-  ════════════════════════════════════════ -->
+  
   <div id="loader" role="status" aria-label="Loading">
     <div class="loader-ring"></div>
     <div class="loader-name">Jaspher Zaballero</div>
   </div>
 
-
-  <!-- ═══════════════════════════════════════
-       CUSTOM CURSOR (hidden on touch devices via CSS)
-  ════════════════════════════════════════ -->
+  
   <div id="cursor-dot"  aria-hidden="true"></div>
   <div id="cursor-ring" aria-hidden="true"></div>
 
-  <!-- ═══════════════════════════════════════
-       BACKGROUND LAYERS
-  ════════════════════════════════════════ -->
+  
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
 
   <div class="orb-container" aria-hidden="true">
@@ -55,9 +48,7 @@
   <div class="grid-bg"       aria-hidden="true"></div>
   <div class="noise-overlay" aria-hidden="true"></div>
 
-  <!-- ═══════════════════════════════════════
-       MOBILE MENU
-  ════════════════════════════════════════ -->
+  
   <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
     <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
     <a href="#hero"       class="mobile-link">Home</a>
@@ -68,11 +59,9 @@
     <a href="#contact"    class="mobile-link">Contact</a>
   </div>
 
-  <!-- ═══════════════════════════════════════
-       NAVIGATION
-  ════════════════════════════════════════ -->
+  
   <nav id="navbar" role="navigation" aria-label="Main navigation">
-    <a href="#hero" class="nav-logo" aria-label="Jaspher Zaballero home">JZ.</a>
+    <a href="#hero" class="nav-logo" aria-label="Jaspher Zaballero home"><span class="logo-bracket">[</span>ZAJ<span class="logo-bracket">]</span></a>
 
     <ul class="nav-links" role="list">
       <li><a href="#about">About</a></li>
@@ -93,13 +82,11 @@
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════════════
-       HERO
-  ════════════════════════════════════════ -->
+  
   <section id="hero">
     <div class="hero-inner">
 
-      <!-- Left copy -->
+      
       <div class="hero-left">
         <div class="hero-eyebrow">
           <span class="eyebrow-dot" aria-hidden="true"></span>
@@ -132,7 +119,7 @@
         </div>
       </div>
 
-      <!-- Right portrait -->
+      
       <div class="hero-right" aria-hidden="true">
         <div class="hero-portrait-bg">
           <div class="portrait-blob"></div>
@@ -153,13 +140,11 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       ABOUT
-  ════════════════════════════════════════ -->
+  
   <section id="about">
     <div class="about-grid">
 
-      <!-- Left: profile avatar -->
+      
       <div class="about-photo-wrap fade-up">
         <div class="about-photo-ring" aria-hidden="true">
           <img src="about-photo.jpg" alt="Jaspher Zaballero" class="about-real-photo" />
@@ -167,7 +152,7 @@
         <div class="about-photo-tag">Jaspher Zaballero · BSCS</div>
       </div>
 
-      <!-- Right: bio text -->
+      
       <div class="about-text fade-up fade-up-delay-2">
         <div class="section-tag">About Me</div>
         <h2 class="section-title">
@@ -197,9 +182,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       SKILLS
-  ════════════════════════════════════════ -->
+  
   <section id="skills">
     <div class="skills-header fade-up">
       <div class="section-tag">What I Know</div>
@@ -207,7 +190,7 @@
       <p>Skills built through coursework, academic projects, and self-driven learning — organised by category.</p>
     </div>
 
-    <!-- Group 1: Skills -->
+    
     <div class="skills-group">
       <div class="skills-group-label fade-up">Skills</div>
       <div class="skills-grid">
@@ -239,7 +222,7 @@
       </div>
     </div>
 
-    <!-- Group 2: Tools -->
+    
     <div class="skills-group">
       <div class="skills-group-label fade-up">Technologies &amp; Tools</div>
       <div class="skills-grid">
@@ -272,9 +255,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       PROJECTS
-  ════════════════════════════════════════ -->
+  
   <section id="projects">
     <div class="projects-header fade-up">
       <div class="section-tag">Featured Work</div>
@@ -284,7 +265,7 @@
 
     <div class="projects-bento">
 
-      <!-- Project 1 — Large (ShopEase) -->
+      
       <article class="project-card pc-1 fade-up" id="shopease-card">
         <div class="project-mockup sq-mockup" onclick="openLightbox(0)" style="cursor:pointer;">
           <img src="shopease/Screenshot (654).png" alt="ShopEase Preview" class="sq-preview-img" />
@@ -311,7 +292,7 @@
         </div>
       </article>
 
-      <!-- Project 2 — Botanica -->
+      
       <article class="project-card pc-2 fade-up fade-up-delay-1">
         <div class="project-mockup sq-mockup" onclick="openLightbox2(0)" style="cursor:pointer;">
           <img src="botanica/Screenshot (633).png" alt="Botanica Preview" class="sq-preview-img" />
@@ -332,7 +313,7 @@
         </div>
       </article>
 
-      <!-- Project 3 — SmartQueue -->
+      
       <article class="project-card pc-3 fade-up fade-up-delay-2">
         <div class="project-mockup sq-mockup" onclick="openLightbox3(0)" style="cursor:pointer;">
           <img src="smartqueue/Screenshot (642).png" alt="SmartQueue Preview" class="sq-preview-img" />
@@ -353,7 +334,7 @@
         </div>
       </article>
 
-      <!-- Project 4 — Portfolio -->
+      
       <article class="project-card pc-4 fade-up fade-up-delay-1">
         <div class="project-mockup sq-mockup" style="cursor:default;">
           <img src="portfolio/Screenshot (651).png" alt="Portfolio Preview" class="sq-preview-img" />
@@ -373,7 +354,7 @@
         </div>
       </article>
 
-      <!-- Project 5 — Figma Student Portal -->
+      
       <article class="project-card pc-5 fade-up fade-up-delay-2">
         <div class="project-mockup sq-mockup" onclick="openLightbox5(0)" style="cursor:pointer;">
           <img src="figma Student Portal/Screenshot (623).png" alt="Student Portal Preview" class="sq-preview-img" />
@@ -394,7 +375,7 @@
         </div>
       </article>
 
-      <!-- Project 6 — Figma E-Commerce Coffee Shop -->
+      
       <article class="project-card pc-4 fade-up fade-up-delay-1">
         <div class="project-mockup sq-mockup" onclick="openLightbox6(0)" style="cursor:pointer;">
           <img src="figma E commerce landing page coffee shop/Screenshot (624).png" alt="Coffee Shop Preview" class="sq-preview-img" />
@@ -415,7 +396,7 @@
         </div>
       </article>
 
-      <!-- Project 7 — Figma Social App -->
+      
       <article class="project-card pc-4 fade-up fade-up-delay-2">
         <div class="project-mockup sq-mockup" onclick="openLightbox7(0)" style="cursor:pointer; max-height:220px;">
           <img src="figma/Screenshot (619).png" alt="Figma Social App Preview" class="sq-preview-img" />
@@ -439,9 +420,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       INTERNSHIP GOALS
-  ════════════════════════════════════════ -->
+  
   <section id="experience">
     <div class="fade-up experience-header">
       <div class="section-tag">Internship Goals</div>
@@ -478,13 +457,11 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       CONTACT
-  ════════════════════════════════════════ -->
+  
   <section id="contact">
     <div class="contact-inner">
 
-      <!-- Left info -->
+      
       <div class="contact-left fade-up">
         <div class="section-tag">Contact</div>
         <h2 class="section-title">
@@ -522,7 +499,7 @@
         </div>
       </div>
 
-      <!-- Right form -->
+      
       <div class="contact-form fade-up fade-up-delay-2">
         <h3>Send a message</h3>
 
@@ -565,9 +542,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════
-       LIGHTBOX MODAL (ShopEase Screenshots)
-  ════════════════════════════════════════ -->
+  
   <div id="lightbox" class="lightbox-overlay" onclick="closeLightboxOutside(event)" aria-modal="true" role="dialog" aria-label="ShopEase project screenshots">
     <div class="lightbox-box">
       <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
@@ -591,7 +566,7 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX 2 — Botanica -->
+  
   <div id="lightbox2" class="lightbox-overlay" onclick="closeLightboxOutside2(event)" aria-modal="true" role="dialog">
     <div class="lightbox-box">
       <button class="lightbox-close" onclick="closeLightbox2()" aria-label="Close">✕</button>
@@ -618,7 +593,7 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX 3 — SmartQueue -->
+  
   <div id="lightbox3" class="lightbox-overlay" onclick="closeLightboxOutside3(event)" aria-modal="true" role="dialog">
     <div class="lightbox-box">
       <button class="lightbox-close" onclick="closeLightbox3()" aria-label="Close">✕</button>
@@ -644,7 +619,7 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX 4 — Portfolio -->
+  
   <div id="lightbox4" class="lightbox-overlay" onclick="if(event.target===this)closeLightbox4()" aria-modal="true" role="dialog">
     <div class="lightbox-box">
       <button class="lightbox-close" onclick="closeLightbox4()">✕</button>
@@ -663,7 +638,7 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX 5 — Figma Student Portal -->
+  
   <div id="lightbox5" class="lightbox-overlay" onclick="if(event.target===this)closeLightbox5()" aria-modal="true" role="dialog">
     <div class="lightbox-box">
       <button class="lightbox-close" onclick="closeLightbox5()">✕</button>
@@ -682,7 +657,7 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX 6 — Coffee Shop -->
+  
   <div id="lightbox6" class="lightbox-overlay" onclick="if(event.target===this)closeLightbox6()" aria-modal="true" role="dialog">
     <div class="lightbox-box">
       <button class="lightbox-close" onclick="closeLightbox6()">✕</button>
@@ -703,7 +678,7 @@
     </div>
   </div>
 
-  <!-- LIGHTBOX 7 — Figma Social App -->
+  
   <div id="lightbox7" class="lightbox-overlay" onclick="if(event.target===this)closeLightbox7()" aria-modal="true" role="dialog">
     <div class="lightbox-box">
       <button class="lightbox-close" onclick="closeLightbox7()">✕</button>
@@ -725,11 +700,9 @@
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════════ -->
+  
   <footer>
-    <div class="footer-logo">JZ.</div>
+    <div class="footer-logo"><span class="logo-bracket">[</span>ZAJ<span class="logo-bracket">]</span></div>
     <div class="footer-text">
       Designed &amp; Developed by <strong>Jaspher Zaballero</strong> · &copy; 2025
     </div>
@@ -740,13 +713,13 @@
     </nav>
   </footer>
 
-  <!-- Scroll-to-top -->
+  
   <button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
 
-  <!-- JavaScript -->
+  
   <script src="main.js"></script>
 
-  <!-- Lightbox Script -->
+  
   <script>
     var lbIndex = 0;
     var lbTotal = 6;

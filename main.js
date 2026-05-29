@@ -348,18 +348,24 @@ function initSmoothAnchors() {
 
 /* ═══════════════════════════════════════════════════════════
    9. CONTACT FORM
-   Sends real email to Gmail via EmailJS.
-   Sign up at https://www.emailjs.com/ (free), create a service
-   + template, then replace the three IDs below.
+   Sends email via Web3Forms (https://web3forms.com).
+
+   HOW TO SET UP (one-time, 2 minutes):
+   ─────────────────────────────────────
+   1. Go to https://web3forms.com
+   2. Enter your email: zaballerowupher2021@gmail.com
+   3. Click "Create Access Key" — they'll email you a key
+   4. Paste that key below to replace YOUR_ACCESS_KEY_HERE
+   5. Done! No account, no dashboard, no SDK needed.
+
+   The access key is safe to leave public in your code.
+   It only controls which inbox receives the messages.
 ═══════════════════════════════════════════════════════════ */
 function initContactForm() {
-  // ── REPLACE THESE THREE VALUES WITH YOUR OWN FROM emailjs.com ──
-  var EMAILJS_PUBLIC_KEY  = 'YKgZbp8mc8UqtvumOe';   // Account → API Keys
-  var EMAILJS_SERVICE_ID  = 'service_ojudw4a';   // Email Services tab
-  var EMAILJS_TEMPLATE_ID = 'template_0zyo7rj';  // Email Templates tab
-  // ───────────────────────────────────────────────────────────────
 
-  try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch(_) {}
+  // ── PASTE YOUR WEB3FORMS KEY HERE (get it free at web3forms.com) ──
+  var WEB3FORMS_KEY = 'ee803336-082f-47fd-ac63-f0c5d3f4868c';
+  // ──────────────────────────────────────────────────────────────────
 
   var submitBtn  = qs('#formSubmitBtn');
   var successMsg = qs('#formSuccess');
@@ -369,6 +375,7 @@ function initContactForm() {
 
   submitBtn.addEventListener('click', handleSubmit);
 
+  /* Also allow Ctrl/Cmd+Enter inside the textarea to submit */
   var textarea = qs('#fmessage');
   if (textarea) {
     textarea.addEventListener('keydown', function (e) {
@@ -394,11 +401,12 @@ function initContactForm() {
 
     hideMessages();
 
+    /* ── Client-side validation ── */
     if (!name || !email || !message) {
       showError('⚠️ Please fill in your name, email, and message.');
-      if (!name) nameEl.focus();
+      if (!name)       nameEl.focus();
       else if (!email) emailEl.focus();
-      else messageEl.focus();
+      else             messageEl.focus();
       return;
     }
 
@@ -408,43 +416,77 @@ function initContactForm() {
       return;
     }
 
+    /* ── Disable button while sending ── */
     submitBtn.disabled    = true;
     submitBtn.textContent = 'Sending…';
 
-    var templateParams = {
-      from_name:    name,
-      from_email:   email,
-      subject:      subject || 'Portfolio Contact',
-      message:      message,
-      to_email:     'zaballerowupher2021@gmail.com'
-    };
+    /*
+     * HOW WEB3FORMS WORKS:
+     * We send a plain POST request (using fetch) to their API endpoint.
+     * No library needed — fetch is built into every modern browser.
+     *
+     * Required fields:
+     *   access_key — your unique key that tells Web3Forms where to deliver
+     *   email      — the sender's email (shown in the email you receive)
+     *   name       — the sender's name
+     *   message    — the message body
+     *
+     * Optional but useful:
+     *   subject    — sets the subject line in your inbox
+     *   botcheck   — leave as empty string; prevents spam bots
+     */
+    fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        name:       name,
+        email:      email,
+        subject:    subject || 'Portfolio Contact from ' + name,
+        message:    message,
+        botcheck:   ''          /* honeypot anti-spam field — always empty */
+      })
+    })
+    .then(function (response) {
+      /* fetch only rejects on network failure, not HTTP errors,
+         so we convert a non-OK response into a real error */
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.success) {
+        /* ── Success ── */
+        submitBtn.textContent = '✓ Sent!';
+        showSuccess('✅ Message sent! I\'ll get back to you soon.');
 
-    try {
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
-        .then(function () {
-          submitBtn.textContent = '✓ Sent!';
-          showSuccess('✅ Message sent! I\'ll get back to you soon.');
-          ['fname', 'femail', 'fsubject', 'fmessage'].forEach(function (id) {
-            var el = qs('#' + id);
-            if (el) el.value = '';
-          });
-          setTimeout(function () {
-            submitBtn.disabled    = false;
-            submitBtn.textContent = 'Send Message ✉';
-            hideMessages();
-          }, 5000);
-        }, function (err) {
-          console.error('EmailJS error:', err);
+        /* Clear all fields */
+        ['fname', 'femail', 'fsubject', 'fmessage'].forEach(function (id) {
+          var el = qs('#' + id);
+          if (el) el.value = '';
+        });
+
+        /* Reset button after 5 s */
+        setTimeout(function () {
           submitBtn.disabled    = false;
           submitBtn.textContent = 'Send Message ✉';
-          showError('⚠️ Failed to send. Please try emailing me directly at zaballerowupher2021@gmail.com');
-        });
-    } catch(e) {
+          hideMessages();
+        }, 5000);
+
+      } else {
+        /* Web3Forms returned success:false (e.g. invalid key) */
+        throw new Error(data.message || 'Web3Forms returned an error');
+      }
+    })
+    .catch(function (err) {
+      /* ── Any failure lands here ── */
+      console.error('Web3Forms error:', err);
       submitBtn.disabled    = false;
       submitBtn.textContent = 'Send Message ✉';
-      showError('⚠️ Email service not configured yet. Please email me directly at zaballerowupher2021@gmail.com');
-    }
+      showError('⚠️ Failed to send. Please email me directly at zaballerowupher2021@gmail.com');
+    });
   }
+
+  /* ── Helpers ── */
 
   function isValidEmail(val) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
@@ -462,7 +504,7 @@ function initContactForm() {
 
   function hideMessages() {
     if (successMsg) successMsg.style.display = 'none';
-    if (errorMsg)   errorMsg.style.display = 'none';
+    if (errorMsg)   errorMsg.style.display   = 'none';
   }
 }
 

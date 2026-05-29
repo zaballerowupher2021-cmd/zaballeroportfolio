@@ -16,6 +16,8 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css" />
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -348,12 +350,11 @@
         </div>
       </article>
 
-      <!-- Project 4 — Portfolio (links to top) -->
+      <!-- Project 4 — Portfolio -->
       <article class="project-card pc-4 fade-up fade-up-delay-1">
-        <div class="project-mockup sq-mockup" onclick="openLightbox4(0)" style="cursor:pointer;">
+        <div class="project-mockup sq-mockup" style="cursor:default;">
           <img src="portfolio/Screenshot (651).png" alt="Portfolio Preview" class="sq-preview-img" />
           <div class="sq-preview-count">📸 1 screenshot</div>
-          <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
         </div>
         <div class="project-info">
           <div class="project-tags">
@@ -412,8 +413,8 @@
       </article>
 
       <!-- Project 7 — Figma Social App -->
-      <article class="project-card pc-4 fade-up fade-up-delay-2">
-        <div class="project-mockup sq-mockup" onclick="openLightbox7(0)" style="cursor:pointer; max-height:220px;">
+      <article class="project-card pc-5 fade-up fade-up-delay-2">
+        <div class="project-mockup sq-mockup" onclick="openLightbox7(0)" style="cursor:pointer;">
           <img src="figma/Screenshot (619).png" alt="Figma Social App Preview" class="sq-preview-img" />
           <div class="sq-preview-count">📸 4 screenshots</div>
           <div class="project-overlay"><span class="overlay-btn">View Project →</span></div>
@@ -492,31 +493,28 @@
         </p>
 
         <div class="contact-links">
-          <a href="mailto:zaballerowupher2021@gmail.com" class="contact-link-item">
+          <div class="contact-link-item" style="cursor:default;">
             <div class="contact-link-icon cyan" aria-hidden="true">✉️</div>
             <div>
               <div class="contact-link-label">Email</div>
               <div class="contact-link-value">zaballerowupher2021@gmail.com</div>
             </div>
-            <span class="contact-link-arrow" aria-hidden="true">→</span>
-          </a>
+          </div>
 
-          <a href="tel:09154032455" class="contact-link-item">
+          <div class="contact-link-item" style="cursor:default;">
             <div class="contact-link-icon teal" aria-hidden="true">📞</div>
             <div>
               <div class="contact-link-label">Phone</div>
               <div class="contact-link-value">09154032455</div>
             </div>
-            <span class="contact-link-arrow" aria-hidden="true">→</span>
-          </a>
+          </div>
 
-          <div class="contact-link-item">
+          <div class="contact-link-item" style="cursor:default;">
             <div class="contact-link-icon blue" aria-hidden="true">📍</div>
             <div>
               <div class="contact-link-label">Location</div>
               <div class="contact-link-value">Calbayog City, Samar, Philippines</div>
             </div>
-            <span class="contact-link-arrow" aria-hidden="true">→</span>
           </div>
         </div>
       </div>
@@ -805,22 +803,6 @@
         if (e.key === 'ArrowRight') lbMove3(1);
         if (e.key === 'ArrowLeft')  lbMove3(-1);
         if (e.key === 'Escape')     closeLightbox3();
-      } else if (document.getElementById('lightbox4').classList.contains('lb-open')) {
-        if (e.key === 'ArrowRight') lbMove4(1);
-        if (e.key === 'ArrowLeft')  lbMove4(-1);
-        if (e.key === 'Escape')     closeLightbox4();
-      } else if (document.getElementById('lightbox5').classList.contains('lb-open')) {
-        if (e.key === 'ArrowRight') lbMove5(1);
-        if (e.key === 'ArrowLeft')  lbMove5(-1);
-        if (e.key === 'Escape')     closeLightbox5();
-      } else if (document.getElementById('lightbox6').classList.contains('lb-open')) {
-        if (e.key === 'ArrowRight') lbMove6(1);
-        if (e.key === 'ArrowLeft')  lbMove6(-1);
-        if (e.key === 'Escape')     closeLightbox6();
-      } else if (document.getElementById('lightbox7').classList.contains('lb-open')) {
-        if (e.key === 'ArrowRight') lbMove7(1);
-        if (e.key === 'ArrowLeft')  lbMove7(-1);
-        if (e.key === 'Escape')     closeLightbox7();
       }
     });
 
@@ -877,92 +859,8 @@
     function closeLightbox3() { document.getElementById('lightbox3').classList.remove('lb-open'); document.body.style.overflow = ''; }
     function closeLightboxOutside3(e) { if (e.target === document.getElementById('lightbox3')) closeLightbox3(); }
 
-    // ── Lightbox 4 (Portfolio) ──
-    var lb4Index = 0, lb4Total = 1, lb4StartX = 0;
-    function buildDots4() {
-      var d = document.getElementById('lightboxDots4'); d.innerHTML = '';
-      for (var i = 0; i < lb4Total; i++) {
-        var dot = document.createElement('button');
-        dot.className = 'lb-dot' + (i === lb4Index ? ' lb-dot-active' : '');
-        (function(idx){ dot.onclick = function(){ goToSlide4(idx); }; })(i);
-        d.appendChild(dot);
-      }
-    }
-    function goToSlide4(n) {
-      lb4Index = n;
-      document.getElementById('lightboxTrack4').style.transform = 'translateX(-' + (lb4Index * 100) + '%)';
-      document.getElementById('lbCounter4').textContent = (lb4Index + 1) + ' / ' + lb4Total;
-      buildDots4();
-    }
-    function lbMove4(dir) { lb4Index = (lb4Index + dir + lb4Total) % lb4Total; goToSlide4(lb4Index); }
-    function openLightbox4(idx) { lb4Index = idx || 0; document.getElementById('lightbox4').classList.add('lb-open'); document.body.style.overflow = 'hidden'; goToSlide4(lb4Index); }
-    function closeLightbox4() { document.getElementById('lightbox4').classList.remove('lb-open'); document.body.style.overflow = ''; }
-
-    // ── Lightbox 5 (Figma Student Portal) ──
-    var lb5Index = 0, lb5Total = 1, lb5StartX = 0;
-    function buildDots5() {
-      var d = document.getElementById('lightboxDots5'); d.innerHTML = '';
-      for (var i = 0; i < lb5Total; i++) {
-        var dot = document.createElement('button');
-        dot.className = 'lb-dot' + (i === lb5Index ? ' lb-dot-active' : '');
-        (function(idx){ dot.onclick = function(){ goToSlide5(idx); }; })(i);
-        d.appendChild(dot);
-      }
-    }
-    function goToSlide5(n) {
-      lb5Index = n;
-      document.getElementById('lightboxTrack5').style.transform = 'translateX(-' + (lb5Index * 100) + '%)';
-      document.getElementById('lbCounter5').textContent = (lb5Index + 1) + ' / ' + lb5Total;
-      buildDots5();
-    }
-    function lbMove5(dir) { lb5Index = (lb5Index + dir + lb5Total) % lb5Total; goToSlide5(lb5Index); }
-    function openLightbox5(idx) { lb5Index = idx || 0; document.getElementById('lightbox5').classList.add('lb-open'); document.body.style.overflow = 'hidden'; goToSlide5(lb5Index); }
-    function closeLightbox5() { document.getElementById('lightbox5').classList.remove('lb-open'); document.body.style.overflow = ''; }
-
-    // ── Lightbox 6 (Coffee Shop) ──
-    var lb6Index = 0, lb6Total = 3, lb6StartX = 0;
-    function buildDots6() {
-      var d = document.getElementById('lightboxDots6'); d.innerHTML = '';
-      for (var i = 0; i < lb6Total; i++) {
-        var dot = document.createElement('button');
-        dot.className = 'lb-dot' + (i === lb6Index ? ' lb-dot-active' : '');
-        (function(idx){ dot.onclick = function(){ goToSlide6(idx); }; })(i);
-        d.appendChild(dot);
-      }
-    }
-    function goToSlide6(n) {
-      lb6Index = n;
-      document.getElementById('lightboxTrack6').style.transform = 'translateX(-' + (lb6Index * 100) + '%)';
-      document.getElementById('lbCounter6').textContent = (lb6Index + 1) + ' / ' + lb6Total;
-      buildDots6();
-    }
-    function lbMove6(dir) { lb6Index = (lb6Index + dir + lb6Total) % lb6Total; goToSlide6(lb6Index); }
-    function openLightbox6(idx) { lb6Index = idx || 0; document.getElementById('lightbox6').classList.add('lb-open'); document.body.style.overflow = 'hidden'; goToSlide6(lb6Index); }
-    function closeLightbox6() { document.getElementById('lightbox6').classList.remove('lb-open'); document.body.style.overflow = ''; }
-
-    // ── Lightbox 7 (Figma Social App) ──
-    var lb7Index = 0, lb7Total = 4, lb7StartX = 0;
-    function buildDots7() {
-      var d = document.getElementById('lightboxDots7'); d.innerHTML = '';
-      for (var i = 0; i < lb7Total; i++) {
-        var dot = document.createElement('button');
-        dot.className = 'lb-dot' + (i === lb7Index ? ' lb-dot-active' : '');
-        (function(idx){ dot.onclick = function(){ goToSlide7(idx); }; })(i);
-        d.appendChild(dot);
-      }
-    }
-    function goToSlide7(n) {
-      lb7Index = n;
-      document.getElementById('lightboxTrack7').style.transform = 'translateX(-' + (lb7Index * 100) + '%)';
-      document.getElementById('lbCounter7').textContent = (lb7Index + 1) + ' / ' + lb7Total;
-      buildDots7();
-    }
-    function lbMove7(dir) { lb7Index = (lb7Index + dir + lb7Total) % lb7Total; goToSlide7(lb7Index); }
-    function openLightbox7(idx) { lb7Index = idx || 0; document.getElementById('lightbox7').classList.add('lb-open'); document.body.style.overflow = 'hidden'; goToSlide7(lb7Index); }
-    function closeLightbox7() { document.getElementById('lightbox7').classList.remove('lb-open'); document.body.style.overflow = ''; }
-
     document.addEventListener('DOMContentLoaded', function() {
-      buildDots2(); buildDots3(); buildDots4(); buildDots5(); buildDots6(); buildDots7();
+      buildDots2(); buildDots3();
       // Swipe for lightbox 2
       var t2 = document.getElementById('lightboxTrack2');
       t2.addEventListener('touchstart', function(e){ lb2StartX = e.touches[0].clientX; }, {passive:true});
@@ -971,22 +869,6 @@
       var t3 = document.getElementById('lightboxTrack3');
       t3.addEventListener('touchstart', function(e){ lb3StartX = e.touches[0].clientX; }, {passive:true});
       t3.addEventListener('touchend', function(e){ var d = lb3StartX - e.changedTouches[0].clientX; if (Math.abs(d) > 40) lbMove3(d > 0 ? 1 : -1); });
-      // Swipe for lightbox 4
-      var t4 = document.getElementById('lightboxTrack4');
-      t4.addEventListener('touchstart', function(e){ lb4StartX = e.touches[0].clientX; }, {passive:true});
-      t4.addEventListener('touchend', function(e){ var d = lb4StartX - e.changedTouches[0].clientX; if (Math.abs(d) > 40) lbMove4(d > 0 ? 1 : -1); });
-      // Swipe for lightbox 5
-      var t5 = document.getElementById('lightboxTrack5');
-      t5.addEventListener('touchstart', function(e){ lb5StartX = e.touches[0].clientX; }, {passive:true});
-      t5.addEventListener('touchend', function(e){ var d = lb5StartX - e.changedTouches[0].clientX; if (Math.abs(d) > 40) lbMove5(d > 0 ? 1 : -1); });
-      // Swipe for lightbox 6
-      var t6 = document.getElementById('lightboxTrack6');
-      t6.addEventListener('touchstart', function(e){ lb6StartX = e.touches[0].clientX; }, {passive:true});
-      t6.addEventListener('touchend', function(e){ var d = lb6StartX - e.changedTouches[0].clientX; if (Math.abs(d) > 40) lbMove6(d > 0 ? 1 : -1); });
-      // Swipe for lightbox 7
-      var t7 = document.getElementById('lightboxTrack7');
-      t7.addEventListener('touchstart', function(e){ lb7StartX = e.touches[0].clientX; }, {passive:true});
-      t7.addEventListener('touchend', function(e){ var d = lb7StartX - e.changedTouches[0].clientX; if (Math.abs(d) > 40) lbMove7(d > 0 ? 1 : -1); });
     });
   </script>
 </body>

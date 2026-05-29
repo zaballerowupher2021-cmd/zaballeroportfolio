@@ -348,10 +348,19 @@ function initSmoothAnchors() {
 
 /* ═══════════════════════════════════════════════════════════
    9. CONTACT FORM
-   Client-side validation with inline error/success messages.
-   No real email sending — shows a simulated success state.
+   Sends real email to Gmail via EmailJS.
+   Sign up at https://www.emailjs.com/ (free), create a service
+   + template, then replace the three IDs below.
 ═══════════════════════════════════════════════════════════ */
 function initContactForm() {
+  // ── REPLACE THESE THREE VALUES WITH YOUR OWN FROM emailjs.com ──
+  var EMAILJS_PUBLIC_KEY  = 'YKgZbp8mc8UqtvumOe';   // Account → API Keys
+  var EMAILJS_SERVICE_ID  = 'service_ojudw4a';   // Email Services tab
+  var EMAILJS_TEMPLATE_ID = 'template_0zyo7rj';  // Email Templates tab
+  // ───────────────────────────────────────────────────────────────
+
+  try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch(_) {}
+
   var submitBtn  = qs('#formSubmitBtn');
   var successMsg = qs('#formSuccess');
   var errorMsg   = qs('#formError');
@@ -360,7 +369,6 @@ function initContactForm() {
 
   submitBtn.addEventListener('click', handleSubmit);
 
-  /* Also allow Enter inside the textarea to submit (Shift+Enter = newline) */
   var textarea = qs('#fmessage');
   if (textarea) {
     textarea.addEventListener('keydown', function (e) {
@@ -374,62 +382,71 @@ function initContactForm() {
   function handleSubmit() {
     var nameEl    = qs('#fname');
     var emailEl   = qs('#femail');
+    var subjectEl = qs('#fsubject');
     var messageEl = qs('#fmessage');
 
-    /* Guard: elements must exist */
-    if (!nameEl || !emailEl || !messageEl) {
-      console.error('[Portfolio] Form fields not found.');
-      return;
-    }
+    if (!nameEl || !emailEl || !messageEl) return;
 
     var name    = nameEl.value.trim();
     var email   = emailEl.value.trim();
+    var subject = subjectEl ? subjectEl.value.trim() : '';
     var message = messageEl.value.trim();
 
     hideMessages();
 
-    /* Validate required fields */
     if (!name || !email || !message) {
       showError('⚠️ Please fill in your name, email, and message.');
-      if (!name)    nameEl.focus();
+      if (!name) nameEl.focus();
       else if (!email) emailEl.focus();
-      else          messageEl.focus();
+      else messageEl.focus();
       return;
     }
 
-    /* Simple email format check */
     if (!isValidEmail(email)) {
       showError('⚠️ Please enter a valid email address.');
       emailEl.focus();
       return;
     }
 
-    /* Disable button and show sending state */
     submitBtn.disabled    = true;
     submitBtn.textContent = 'Sending…';
 
-    /* Simulate async send (replace with fetch/FormData for real back-end) */
-    setTimeout(function () {
-      submitBtn.textContent = '✓ Sent!';
-      showSuccess('✅ Message sent! I\'ll get back to you soon.');
+    var templateParams = {
+      from_name:    name,
+      from_email:   email,
+      subject:      subject || 'Portfolio Contact',
+      message:      message,
+      to_email:     'zaballerowupher2021@gmail.com'
+    };
 
-      /* Reset form */
-      ['fname', 'femail', 'fsubject', 'fmessage'].forEach(function (id) {
-        var el = qs('#' + id);
-        if (el) el.value = '';
-      });
-
-      /* Re-enable button after delay */
-      setTimeout(function () {
-        submitBtn.disabled    = false;
-        submitBtn.textContent = 'Send Message ✉';
-        hideMessages();
-      }, 5000);
-    }, 1400);
+    try {
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(function () {
+          submitBtn.textContent = '✓ Sent!';
+          showSuccess('✅ Message sent! I\'ll get back to you soon.');
+          ['fname', 'femail', 'fsubject', 'fmessage'].forEach(function (id) {
+            var el = qs('#' + id);
+            if (el) el.value = '';
+          });
+          setTimeout(function () {
+            submitBtn.disabled    = false;
+            submitBtn.textContent = 'Send Message ✉';
+            hideMessages();
+          }, 5000);
+        }, function (err) {
+          console.error('EmailJS error:', err);
+          submitBtn.disabled    = false;
+          submitBtn.textContent = 'Send Message ✉';
+          showError('⚠️ Failed to send. Please try emailing me directly at zaballerowupher2021@gmail.com');
+        });
+    } catch(e) {
+      submitBtn.disabled    = false;
+      submitBtn.textContent = 'Send Message ✉';
+      showError('⚠️ Email service not configured yet. Please email me directly at zaballerowupher2021@gmail.com');
+    }
   }
 
   function isValidEmail(val) {
-    /* RFC-loose pattern — enough for front-end feedback */
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
   }
 
